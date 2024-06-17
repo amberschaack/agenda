@@ -9,9 +9,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/event GET route');
     // console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    const queryText = `SELECT events.event_name, events.event_id, event_date FROM rsvp JOIN memberships 
+    const queryText = `SELECT events.event_name, events.event_id, event_date, "users".username AS admin 
+                    FROM rsvp JOIN memberships 
                     ON rsvp.membership_id=memberships.id
                     JOIN events ON events.event_id=rsvp.event_id
+                    JOIN "users" ON "users".id=events.event_admin
                     WHERE memberships.user_id=$1 AND rsvp.status!=2
                     ORDER BY events.event_date;`;
     pool.query(queryText, [req.user.id]).then((result) => {
@@ -22,9 +24,23 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get('/types', (req, res) => {
+    console.log('/event/types route');
+    const queryText = `SELECT * FROM event_types;`;
+    pool.query(queryText)
+        .then((result) => {
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log(error);
+            res.sendStatus(500);
+        });
+})
+
 // Returns all info on specific event
 router.get('/:event_id', rejectNonMembers, (req, res) => {
-    const queryText = `SELECT * FROM "events" WHERE event_id=$1;`;
+    const queryText = `SELECT * FROM events
+	                    JOIN "users" ON "users".id=events.event_admin
+	                    WHERE events.event_id=$1;`;
     pool.query(queryText, [req.params.event_id])
         .then((result) => {res.send(result.rows[0])})
         .catch((error) => {

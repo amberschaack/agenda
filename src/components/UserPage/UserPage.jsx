@@ -23,6 +23,16 @@ function UserPage() {
     history.push(`/event/details/${eventid}`);
   }
 
+  const newEvent = () => {
+    console.log('Clicked');
+    history.push('/add-event');
+  }
+
+  const newGroup = () => {
+    console.log('Clicked');
+    history.push('/add-group');
+  }
+
   return (
     <>
     <div className="container">
@@ -36,6 +46,12 @@ function UserPage() {
           <li key={i} onClick={() => eventDetails(event.event_id)}>{event.event_date} | {event.event_name}</li>  
         )}
       </ul>
+    </div>
+    <div className='container'>
+      <button onClick={newEvent}>Create New Event</button>
+    </div>
+    <div className='container'>
+      <button onClick={newGroup}>Create New Group</button>
     </div>
     {/* <LogOutButton className="btn" /> */}
     </>

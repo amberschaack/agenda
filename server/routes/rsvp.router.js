@@ -7,8 +7,9 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 // Get RSVPs for specific event
 router.get('/:id', rejectUnauthenticated, (req, res) => {
     console.log('/rsvp GET route');
-    const queryText = `SELECT rsvp.event_id, rsvp.status, memberships.user_id 
-                        FROM rsvp JOIN memberships ON rsvp.membership_id=memberships.id
+    const queryText = `SELECT rsvp.event_id, rsvp.status, memberships.user_id, "users".username FROM rsvp 
+	                    JOIN memberships ON rsvp.membership_id=memberships.id
+	                    JOIN "users" ON "users".id=memberships.user_id
 	                    JOIN events ON rsvp.event_id=events.event_id
 	                    WHERE events.event_id=$1;`;
     pool.query(queryText, [req.params.id])

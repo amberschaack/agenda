@@ -22,6 +22,11 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
 import EventDetails from '../Events/EventDetails';
+import MyEvents from '../Events/MyEvents';
+import MyGroups from '../Groups/MyGroups';
+import MyProfile from '../Profile/MyProfile';
+import EventForm from '../Events/EventForm';
+import GroupForm from '../Groups/GroupForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -110,8 +115,29 @@ function App() {
               <LandingPage />
             }
           </Route>
+
           <Route path='/event/details/:id'>
             <EventDetails />
+          </Route>
+
+          <Route path='/my-events'>
+              <MyEvents />
+          </Route>
+
+          <Route path='/my-groups'>
+              <MyGroups />
+          </Route>
+
+          <Route path='/my-profile'>
+              <MyProfile />
+          </Route>
+
+          <Route path="/add-event">
+            <EventForm />
+          </Route>
+
+          <Route path='/add-group'>
+            <GroupForm />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}

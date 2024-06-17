@@ -20,7 +20,8 @@
 [] My Groups
 [] My Profile
 [] About
-[] Event Details // Still need to get RSVP's
+[X] Event Details
+    [] STRETCH: Show map of location
 [] Group Details
 
 ## UPLOADS
@@ -36,3 +37,4 @@
 ## MISC
 [] Make user choose a 'default' group upon registration
     --'Fargo Events', 'Minneapolis Events', etc.
+[] Use Moment to get dates to show up better
