@@ -29,6 +29,7 @@
 
 ## NOTIFICATIONS (STRETCH)
 [] Integrate Twilio
+[] Set up checkbox upon registration to receive notifications
 
 ## MISC
 [] Make user choose a 'default' group upon registration
