@@ -1,8 +1,10 @@
 const eventReducer = (state = [], action) => {
-    if (action.type === 'SET_EVENT') {
-        return action.payload;
+    switch (action.type) {
+        case 'SET_EVENT':
+            return action.payload;
+        default: 
+            return state;
     }
-    return state;
 }
 
 

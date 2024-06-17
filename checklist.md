@@ -1,7 +1,7 @@
 ## ROUTERS
 [X] GET My Events
 [X] GET My Groups
-[] POST New Event // Need to finish SQL to automatically RSVP creator to 'Going'
+[X] POST New Event
 [X] POST New Group
 [X] PUT Edit Event
 [X] PUT Edit Group
@@ -15,11 +15,13 @@
 [] Create new group
 
 ## PAGES
-[] Home // Populates user's upcoming events
+[X] Home // Populates user's upcoming events
 [] My Events
 [] My Groups
 [] My Profile
 [] About
+[] Event Details // Still need to get RSVP's
+[] Group Details
 
 ## UPLOADS
 [] Incorporate Cloudinary on image uploads
