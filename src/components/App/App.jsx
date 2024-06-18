@@ -27,6 +27,7 @@ import MyGroups from '../Groups/MyGroups';
 import MyProfile from '../Profile/MyProfile';
 import EventForm from '../Events/EventForm';
 import GroupForm from '../Groups/GroupForm';
+import GroupDetails from '../Groups/GroupDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -122,6 +123,10 @@ function App() {
 
           <Route path='/my-events'>
               <MyEvents />
+          </Route>
+
+          <Route path='/group/details/:id'>
+            <GroupDetails />
           </Route>
 
           <Route path='/my-groups'>

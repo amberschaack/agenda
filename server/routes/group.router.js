@@ -6,7 +6,7 @@ const router = express.Router();
 // GET route to return logged in users groups
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('/group GET route');
-  const queryText = `SELECT groups.name, groups.id FROM groups JOIN memberships ON groups.id=memberships.group_id
+  const queryText = `SELECT groups.name, groups.id, groups.owner FROM groups JOIN memberships ON groups.id=memberships.group_id
                     JOIN "users" ON "users".id=memberships.user_id WHERE users.id=$1;`;
   pool.query(queryText, [req.user.id])
     .then((result) => {
@@ -16,6 +16,20 @@ router.get('/', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
   });
 });
+
+// Returns all info on specific group
+router.get('/:id', rejectUnauthenticated,  (req, res) => {
+  const queryText = `SELECT * FROM groups
+                      JOIN memberships on memberships.group_id=groups.id
+                      JOIN "users" on "users".id=memberships.user_id
+                      WHERE groups.id=$1;`;
+  pool.query(queryText, [req.params.id])
+    .then((result) => {res.send(result.rows[0])})
+    .catch((error) => {
+      console.log('Error getting event details', error);
+      res.sendStatus(500);
+  })
+})
 
 // POST route to create a new group (creates new group, but needs to add owner to it automatically)
 router.post('/', rejectUnauthenticated, async (req, res) => {

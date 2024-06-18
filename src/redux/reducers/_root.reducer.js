@@ -7,6 +7,7 @@ import rsvp from './rsvp.reducer';
 import eventTypes from './eventTypes.reducer';
 import group from './group.reducer';
 import myEvent from './myEvent.reducer';
+import groupDetails from './groupDetails.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
   rsvp,
   eventTypes,
   group,
-  myEvent
+  myEvent,
+  groupDetails
 });
 
 export default rootReducer;
