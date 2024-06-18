@@ -11,8 +11,9 @@
 [X] DELETE Member
 
 ## FORMS
-[] Create new event
-[] Create new group
+[X] Create new event
+[X] Create new group
+    [] STRETCH: Group privacy settings
 
 ## PAGES
 [X] Home // Populates user's upcoming events

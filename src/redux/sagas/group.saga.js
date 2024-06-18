@@ -11,9 +11,19 @@ function* fetchGroups() {
     }
 }
 
+function* addGroup(action) {
+    try {
+        yield axios.post('/api/group', action.payload);
+        yield put({ type: 'FETCH_GROUP' });
+    } catch (error) {
+        console.log(`Error getting groups`, error);
+    }
+}
+
 
 function* groupSaga() {
     yield takeLeading('FETCH_GROUP', fetchGroups);
+    yield takeLeading('ADD_GROUP', addGroup);
 }
 
 export default groupSaga;

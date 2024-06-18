@@ -18,17 +18,23 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 // POST route to create a new group (creates new group, but needs to add owner to it automatically)
-router.post('/', rejectUnauthenticated, (req, res) => {
-  console.log('/group POST route');
-  const queryText = `INSERT INTO groups ("owner", "name", "description")
-                      VALUES ($1, $2, $3) RETURNING *;`;
-  pool.query(queryText, [req.user.id, req.body.name, req.body.description])
-    .then((result) => {
-      res.send(result.rows[0]);
-    }).catch((error) => {
-      console.log(error);
-      res.sendStatus(500);
-  });
+router.post('/', rejectUnauthenticated, async (req, res) => {
+  try {
+    console.log('/group POST route');
+    const queryText = `INSERT INTO groups ("owner", "name", "description")
+                        VALUES ($1, $2, $3) RETURNING *;`;
+    const result = await pool.query(queryText, [req.user.id, req.body.name, req.body.description])
+    const createdGroupId = result.rows[0].id;
+    console.log(result.rows);
+    console.log('Group ID:', createdGroupId);
+    const membershipText = `INSERT INTO memberships ("user_id", "group_id")
+                            VALUES ($1, $2);`;
+    const result2 = await pool.query(membershipText, [req.user.id, createdGroupId]);
+    res.send(result2.rows[0]);
+  } catch (error) {
+    console.log('Error adding new group', error);
+    res.sendStatus(500);
+  }
 });
 
 // PUT route to edit an existing group that you created
