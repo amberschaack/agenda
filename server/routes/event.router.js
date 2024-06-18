@@ -26,7 +26,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/types', (req, res) => {
     console.log('/event/types route');
-    const queryText = `SELECT * FROM event_types;`;
+    const queryText = `SELECT * FROM event_types ORDER BY event_type_id;`;
     pool.query(queryText)
         .then((result) => {
             res.send(result.rows);

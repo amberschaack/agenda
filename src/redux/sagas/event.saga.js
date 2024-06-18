@@ -31,10 +31,20 @@ function* fetchEventTypes() {
     }
 }
 
+function* addEvent(action) {
+    try {
+        yield axios.post('/api/event', action.payload);
+        yield put({ type: 'FETCH_EVENT' });
+    } catch (error) {
+        console.log(`Error adding new event`, error);
+    }
+}
+
 function* eventSaga() {
     yield takeLeading('FETCH_EVENT', fetchEvents);
     yield takeLeading('FETCH_EVENT_DETAILS', fetchEventDetails);
     yield takeLeading('FETCH_EVENT_TYPES', fetchEventTypes);
+    yield takeLeading('ADD_EVENT', addEvent);
 }
 
 export default eventSaga;
