@@ -13,6 +13,8 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const going = events.filter(event => event.status === 1);
+
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENT' })
   }, []);
@@ -42,8 +44,8 @@ function UserPage() {
     <div className="container">
       <h3>Upcoming Events</h3>
       <ul>
-        {events.map((event, i) =>
-          <li key={i} onClick={() => eventDetails(event.event_id)}>{event.event_date} | {event.event_name}</li>  
+        {going.map((event) =>
+          <li key={event.event_id} onClick={() => eventDetails(event.event_id)}>{event.event_date} | {event.event_name}</li>  
         )}
       </ul>
     </div>

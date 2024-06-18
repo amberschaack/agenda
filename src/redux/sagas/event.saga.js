@@ -1,4 +1,4 @@
-import { put, takeLeading } from "redux-saga/effects";
+import { put, takeEvery, takeLeading } from "redux-saga/effects";
 import axios from "axios";
 
 function* fetchEvents() {
@@ -31,6 +31,16 @@ function* fetchEventTypes() {
     }
 }
 
+function* fetchMyEvents() {
+    try {
+        const result = yield axios.get('/api/event/my-event');
+        yield put({ type: 'SET_MY_EVENT', payload: result.data });
+        console.log(result);
+    } catch (error) {
+        console.log(`Error getting users events`, error);
+    }
+}
+
 function* addEvent(action) {
     try {
         yield axios.post('/api/event', action.payload);
@@ -45,6 +55,7 @@ function* eventSaga() {
     yield takeLeading('FETCH_EVENT_DETAILS', fetchEventDetails);
     yield takeLeading('FETCH_EVENT_TYPES', fetchEventTypes);
     yield takeLeading('ADD_EVENT', addEvent);
+    yield takeLeading('FETCH_MY_EVENT', fetchMyEvents);
 }
 
 export default eventSaga;

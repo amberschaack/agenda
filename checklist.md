@@ -39,3 +39,5 @@
 [] Make user choose a 'default' group upon registration
     --'Fargo Events', 'Minneapolis Events', etc.
 [] Use Moment to get dates to show up better
+[] Completed Event management
+    --Archive

@@ -89,8 +89,8 @@ export default function EventForm() {
             <br></br>
             <br></br>
             <button>Create New Event</button>
-            <button onClick={backToUpcoming}>Cancel</button>
         </form>
+            <button onClick={backToUpcoming}>Cancel</button>
         </div>
         </>
     )

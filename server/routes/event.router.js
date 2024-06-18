@@ -4,25 +4,42 @@ const pool = require('../modules/pool');
 const { rejectUnauthenticated, rejectNonMembers } = require('../modules/authentication-middleware');
 // const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
+
 // This route returns the logged in users events
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/event GET route');
     // console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    const queryText = `SELECT events.event_name, events.event_id, event_date, "users".username AS admin 
+    const queryText = `SELECT events.event_name, events.event_id, event_date, "users".username AS admin, rsvp.status 
                     FROM rsvp JOIN memberships 
                     ON rsvp.membership_id=memberships.id
                     JOIN events ON events.event_id=rsvp.event_id
                     JOIN "users" ON "users".id=events.event_admin
-                    WHERE memberships.user_id=$1 AND rsvp.status!=2
+                    WHERE memberships.user_id=$1
                     ORDER BY events.event_date;`;
-    pool.query(queryText, [req.user.id]).then((result) => {
+    pool.query(queryText, [req.user.id])
+        .then((result) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log(error);
         res.sendStatus(500);
     });
 });
+
+// Returns all events owned by user
+router.get('/my-event', rejectUnauthenticated, (req, res) => {
+    const queryText = `SELECT * FROM events
+	                    JOIN "users" ON "users".id=events.event_admin
+	                    WHERE events.event_admin=$1;`;
+    pool.query(queryText, [req.user.id])
+        .then((result) => {
+            console.log(result.rows);
+            res.send(result.rows);
+        }).catch((error) => {
+            console.log('Error getting users events', error);
+            res.sendStatus(500);
+        })
+})
 
 router.get('/types', (req, res) => {
     console.log('/event/types route');

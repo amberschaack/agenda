@@ -36,8 +36,8 @@ export default function GroupForm() {
                 <input id='group-name' type='text' placeholder='Group Name' value={newGroup.name} onChange={handleChange} />
                 <input id='group-description' type='text' placeholder='Group Description' value={newGroup.description} onChange={handleChange} />
                 <button>Create New Group</button>
-                <button onClick={backToUpcoming}>Cancel</button>
             </form>
+                <button onClick={backToUpcoming}>Cancel</button>
         </div>
         </>
     )
