@@ -48,9 +48,9 @@ router.get('/:id', rejectUnauthenticated,  (req, res) => {
 router.post('/', rejectUnauthenticated, async (req, res) => {
   try {
     console.log('/group POST route');
-    const queryText = `INSERT INTO groups ("owner", "name", "description")
-                        VALUES ($1, $2, $3) RETURNING *;`;
-    const result = await pool.query(queryText, [req.user.id, req.body.name, req.body.description])
+    const queryText = `INSERT INTO groups ("owner", "name", "description", "logo")
+                        VALUES ($1, $2, $3, $4) RETURNING *;`;
+    const result = await pool.query(queryText, [req.user.id, req.body.name, req.body.description, req.body.logo])
     const createdGroupId = result.rows[0].id;
     console.log(result.rows);
     console.log('Group ID:', createdGroupId);

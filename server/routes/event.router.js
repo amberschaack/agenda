@@ -105,13 +105,6 @@ router.post('/', rejectNonMembers, async (req, res) => {
 // Edit (PUT) event (can only edit an event you made)
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req body', req.body);
-    // const {event_date} = req.body;
-    // console.log('EVENT DATE', typeof event_date);
-    // const formatDate = (date) => {
-    //     let formattedDate = date.slice(0,10);
-    //     return formattedDate;
-    // }
-    // console.log('FORMAT EVENT DATE', formatDate(event_date));
     console.log('req params', req.params);
  
     const queryText = `UPDATE events SET event_time=$1, event_name=$2, description=$3, location=$4, event_date=$5

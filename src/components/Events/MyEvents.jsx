@@ -50,7 +50,6 @@ export default function MyEvents() {
                 <ul>
                     {myEvents.map((myEvent) => (
                         <li key={myEvent.event_id} onClick={() => editEvent(myEvent.event_id)}>{myEvent.event_name}</li>
-                        // return <EditEvent event={myEvent} key={myEvent.event_id}/>
                     ))}
                 </ul>
             </>

@@ -1,10 +1,11 @@
 import React, { useState }from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { useScript } from '../../hooks/useScript';
 
 export default function GroupForm() {
     const dispatch = useDispatch();
-    const [newGroup, setNewGroup] = useState({name: '', description: ''});
+    const [newGroup, setNewGroup] = useState({name: '', description: '', logo: ''});
     const history = useHistory();
 
     const backToUpcoming = () => {
@@ -14,7 +15,7 @@ export default function GroupForm() {
     const addGroup = (event) => {
         event.preventDefault();
         dispatch({ type: 'ADD_GROUP', payload: newGroup });
-        setNewGroup({name: '', description: ''});
+        setNewGroup({name: '', description: '', logo: ''});
     }
 
     const handleChange = (event) => {
@@ -28,6 +29,30 @@ export default function GroupForm() {
         }
     }
 
+    const openWidget = () => {
+        // Currently there is a bug with the Cloudinary <Widget /> component
+        // where the button defaults to a non type="button" which causes the form
+        // to submit when clicked. So for now just using the standard widget that
+        // is available on window.cloudinary
+        // See docs: https://cloudinary.com/documentation/upload_widget#look_and_feel_customization
+        !!window.cloudinary && window.cloudinary.createUploadWidget(
+           {
+              sources: ['local', 'url', 'camera'],
+              cloudName: 'dz2bil44j',
+              uploadPreset: 'hl5wdxak'
+           },
+           (error, result) => {
+              if (!error && result && result.event === "success") {
+                 // When an upload is successful, save the uploaded URL to local state!
+                 setNewGroup({
+                    ...newGroup,
+                    logo: result.info.secure_url
+                 })
+              }
+           },
+        ).open();
+     }
+
     return (
         <>
         <div className='container'>
@@ -35,6 +60,12 @@ export default function GroupForm() {
             <form onSubmit={addGroup}>
                 <input id='group-name' type='text' placeholder='Group Name' value={newGroup.name} onChange={handleChange} />
                 <input id='group-description' type='text' placeholder='Group Description' value={newGroup.description} onChange={handleChange} />
+                <h2>Upload New File</h2>
+                    { /* This just sets up the window.cloudinary widget */ }
+                    {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
+
+                    File to upload: <button type="button" onClick={openWidget}>Pick File</button>
+                    <br />
                 <button>Create New Group</button>
             </form>
                 <button onClick={backToUpcoming}>Cancel</button>

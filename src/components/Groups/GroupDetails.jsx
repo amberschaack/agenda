@@ -19,6 +19,7 @@ export default function GroupDetails() {
     return (
         <div className="container">
         <h1>Group Details</h1>
+            <img src={groupDetails.logo} />
             <h2>{groupDetails.name}</h2>
             <h3>Group Owner: {groupDetails.owner}</h3>
             <h4>{groupDetails.description}</h4>
