@@ -50,12 +50,22 @@ function* addEvent(action) {
     }
 }
 
+function* editEvent(action) {
+    try {
+        yield axios.put(`/api/event/${action.payload}`);
+        yield put({ type: 'FETCH_EVENT_DETAILS' });
+    } catch (error) {
+        console.log(`Error editing event`, error);
+    }
+}
+
 function* eventSaga() {
     yield takeLeading('FETCH_EVENT', fetchEvents);
     yield takeLeading('FETCH_EVENT_DETAILS', fetchEventDetails);
     yield takeLeading('FETCH_EVENT_TYPES', fetchEventTypes);
     yield takeLeading('ADD_EVENT', addEvent);
     yield takeLeading('FETCH_MY_EVENT', fetchMyEvents);
+    yield takeLeading('EDIT_EVENT', editEvent);
 }
 
 export default eventSaga;

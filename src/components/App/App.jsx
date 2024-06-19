@@ -29,6 +29,7 @@ import EventForm from '../Events/EventForm';
 import GroupForm from '../Groups/GroupForm';
 import GroupDetails from '../Groups/GroupDetails';
 import SelectGroup from '../Groups/SelectGroup';
+import EditEvent from '../Events/EditEvent';
 
 function App() {
   const dispatch = useDispatch();
@@ -140,6 +141,10 @@ function App() {
 
           <Route path="/add-event">
             <EventForm />
+          </Route>
+
+          <Route path='/event/edit/:id' component={EditEvent}>
+            <EditEvent />
           </Route>
 
           <Route path='/add-group'>

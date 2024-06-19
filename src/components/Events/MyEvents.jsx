@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import EditEvent from './EditEvent';
 
 export default function MyEvents() {
     const events = useSelector(store => store.event);
@@ -28,6 +29,12 @@ export default function MyEvents() {
         history.push(`/event/details/${eventid}`);
     }
 
+    const editEvent = (eventid) => {
+        console.log('Clicked', eventid);
+        // dispatch({ type: 'FETCH_EVENT_DETAILS', payload: eventid });
+        history.push(`/event/edit/${eventid}`);
+    }
+
     return (
         <div className="container">
             <h1>My Events</h1>
@@ -42,7 +49,8 @@ export default function MyEvents() {
             <h3>Manage My Events:</h3>
                 <ul>
                     {myEvents.map((myEvent) => (
-                        <li key={myEvent.event_id} onClick={() => eventDetails(myEvent.event_id)}>{myEvent.event_name}</li>
+                        <li key={myEvent.event_id} onClick={() => editEvent(myEvent.event_id)}>{myEvent.event_name}</li>
+                        // return <EditEvent event={myEvent} key={myEvent.event_id}/>
                     ))}
                 </ul>
             </>
