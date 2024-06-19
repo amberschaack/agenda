@@ -8,6 +8,8 @@ import eventTypes from './eventTypes.reducer';
 import group from './group.reducer';
 import myEvent from './myEvent.reducer';
 import groupDetails from './groupDetails.reducer';
+import membership from './membership.reducer';
+import allGroups from './allGroups.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -24,7 +26,9 @@ const rootReducer = combineReducers({
   eventTypes,
   group,
   myEvent,
-  groupDetails
+  groupDetails,
+  membership,
+  allGroups
 });
 
 export default rootReducer;

@@ -17,12 +17,25 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   });
 });
 
+router.get('/all-groups', rejectUnauthenticated, (req, res) => {
+  console.log('/group/all-groups GET route');
+  const queryText = `SELECT * FROM groups;`;
+  pool.query(queryText)
+    .then((result) => {
+      res.send(result.rows)
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+  });
+})
+
 // Returns all info on specific group
 router.get('/:id', rejectUnauthenticated,  (req, res) => {
-  const queryText = `SELECT * FROM groups
-                      JOIN memberships on memberships.group_id=groups.id
+  const queryText = `SELECT groups.id, groups.name, groups.logo, groups.description, groups.privacy_type, 
+	                    "users".username AS owner, "users".avatar 
+                      FROM groups JOIN memberships on memberships.group_id=groups.id
                       JOIN "users" on "users".id=memberships.user_id
-                      WHERE groups.id=$1;`;
+                      WHERE groups.id=$1 AND groups.owner="users".id;`;
   pool.query(queryText, [req.params.id])
     .then((result) => {res.send(result.rows[0])})
     .catch((error) => {

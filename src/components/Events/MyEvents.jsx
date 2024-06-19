@@ -34,7 +34,7 @@ export default function MyEvents() {
             <h3>Upcoming Events:</h3>
                 <ul>
                     {going.map((gEvent) =>
-                     <li key={gEvent.event_id} onClick={() => eventDetails(gEvent.event_id)}>{gEvent.event_date} | {gEvent.event_name}</li>  
+                     <li key={gEvent.event_id} onClick={() => eventDetails(gEvent.event_id)}>{gEvent.event_name}</li>  
                      )}
                  </ul>
             {myEvents.length>0 ? 

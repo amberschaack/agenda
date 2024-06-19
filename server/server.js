@@ -12,6 +12,7 @@ const userRouter = require('./routes/user.router');
 const eventRouter = require('./routes/event.router');
 const groupRouter = require('./routes/group.router');
 const rsvpRouter = require('./routes/rsvp.router');
+const membershipRouter = require('./routes/membership.router');
 
 // Express Middleware
 app.use(express.json());
@@ -30,6 +31,7 @@ app.use('/api/user', userRouter);
 app.use('/api/event', eventRouter);
 app.use('/api/group', groupRouter);
 app.use('/api/rsvp', rsvpRouter);
+app.use('/api/membership', membershipRouter);
 
 // Listen Server & Port
 app.listen(PORT, () => {

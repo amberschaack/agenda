@@ -45,7 +45,7 @@ function UserPage() {
       <h3>Upcoming Events</h3>
       <ul>
         {going.map((event) =>
-          <li key={event.event_id} onClick={() => eventDetails(event.event_id)}>{event.event_date} | {event.event_name}</li>  
+          <li key={event.event_id} onClick={() => eventDetails(event.event_id)}>{event.event_name}</li>  
         )}
       </ul>
     </div>

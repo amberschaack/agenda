@@ -21,6 +21,16 @@ function* fetchGroupDetails(action) {
     }
 }
 
+function* fetchAllGroups() {
+    try {
+        const result = yield axios.get('/api/group/all-groups');
+        yield put({ type: 'SET_ALL_GROUPS', payload: result.data });
+        console.log(result);
+    } catch (error) {
+        console.log(`Error getting all groups`, error);
+    }
+}
+
 function* addGroup(action) {
     try {
         yield axios.post('/api/group', action.payload);
@@ -35,6 +45,7 @@ function* groupSaga() {
     yield takeLeading('FETCH_GROUP', fetchGroups);
     yield takeLeading('FETCH_GROUP_DETAILS', fetchGroupDetails);
     yield takeLeading('ADD_GROUP', addGroup);
+    yield takeLeading('FETCH_ALL_GROUPS', fetchAllGroups);
 }
 
 export default groupSaga;

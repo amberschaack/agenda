@@ -28,6 +28,7 @@ import MyProfile from '../Profile/MyProfile';
 import EventForm from '../Events/EventForm';
 import GroupForm from '../Groups/GroupForm';
 import GroupDetails from '../Groups/GroupDetails';
+import SelectGroup from '../Groups/SelectGroup';
 
 function App() {
   const dispatch = useDispatch();
@@ -143,6 +144,10 @@ function App() {
 
           <Route path='/add-group'>
             <GroupForm />
+          </Route>
+
+          <Route path='/select-group'>
+            <SelectGroup />
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
