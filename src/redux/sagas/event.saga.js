@@ -13,7 +13,9 @@ function* fetchEvents() {
 
 function* fetchEventDetails(action) {
     try {
+        console.log('Action.payload', action.payload);
         const result = yield axios.get(`/api/event/${action.payload}`);
+        console.log('result.data', result.data);
         yield put({ type: 'SET_EVENT_DETAILS', payload: result.data ?? {}});
         console.log(result);
     } catch (error) {
@@ -52,8 +54,10 @@ function* addEvent(action) {
 
 function* editEvent(action) {
     try {
-        yield axios.put(`/api/event/${action.payload}`);
-        yield put({ type: 'FETCH_EVENT_DETAILS' });
+        console.log('action.payload', action.payload);
+        yield axios.put(`/api/event/${action.payload.eventId}`, action.payload.details);
+        yield put({ type: 'FETCH_EVENT_DETAILS', payload: action.payload.eventId });
+        yield put({ type: 'CLEAR_EVENT_DETAILS' });
     } catch (error) {
         console.log(`Error editing event`, error);
     }

@@ -54,8 +54,11 @@ router.get('/types', (req, res) => {
 })
 
 // Returns all info on specific event
-router.get('/:event_id', rejectNonMembers, (req, res) => {
-    const queryText = `SELECT * FROM events
+router.get('/:event_id', rejectUnauthenticated, (req, res) => {
+    const queryText = `SELECT events.event_id, events.description, events.event_date,
+                        events.event_name, events.event_time, events.event_type_id,
+                        events.group_id, events.location, "users".username, "users".avatar
+                        FROM events
 	                    JOIN "users" ON "users".id=events.event_admin
 	                    WHERE events.event_id=$1;`;
     pool.query(queryText, [req.params.event_id])
@@ -100,13 +103,21 @@ router.post('/', rejectNonMembers, async (req, res) => {
 });
 
 // Edit (PUT) event (can only edit an event you made)
-router.put('/:event_id', rejectNonMembers, (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req body', req.body);
+    // const {event_date} = req.body;
+    // console.log('EVENT DATE', typeof event_date);
+    // const formatDate = (date) => {
+    //     let formattedDate = date.slice(0,10);
+    //     return formattedDate;
+    // }
+    // console.log('FORMAT EVENT DATE', formatDate(event_date));
     console.log('req params', req.params);
-    const queryText = `UPDATE events SET event_date=$1, event_time=$2, event_name=$3, description=$4, location=$5
+ 
+    const queryText = `UPDATE events SET event_time=$1, event_name=$2, description=$3, location=$4, event_date=$5
                         WHERE event_id=$6 AND event_admin=$7;`;
-    pool.query(queryText, [req.body.event_date, req.body.event_time, req.body.event_name, req.body.description,
-                            req.body.location, req.params.event_id, req.user.id])
+    pool.query(queryText, [req.body.event_time, req.body.event_name, req.body.description,
+                            req.body.location, req.body.event_date, req.params.id, req.user.id])
     .then((result) => {
         res.sendStatus(200);
      })

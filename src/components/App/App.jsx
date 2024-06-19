@@ -143,7 +143,7 @@ function App() {
             <EventForm />
           </Route>
 
-          <Route path='/event/edit/:id' component={EditEvent}>
+          <Route path='/event/edit/:id'>
             <EditEvent />
           </Route>
 

@@ -16,7 +16,6 @@ const membershipRouter = require('./routes/membership.router');
 
 // Express Middleware
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 app.use(express.static('build'));
 
 // Passport Session Configuration

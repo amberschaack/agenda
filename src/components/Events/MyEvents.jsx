@@ -31,7 +31,7 @@ export default function MyEvents() {
 
     const editEvent = (eventid) => {
         console.log('Clicked', eventid);
-        // dispatch({ type: 'FETCH_EVENT_DETAILS', payload: eventid });
+        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: eventid });
         history.push(`/event/edit/${eventid}`);
     }
 
