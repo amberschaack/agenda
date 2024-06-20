@@ -60,6 +60,14 @@ function* deleteGroup(action) {
     }
 }
 
+function* joinGroup(action) {
+    try {
+        yield axios.post(`/api/membership/${action.payload}`);
+    } catch (error) {
+        console.log(`Error joining group`, error);
+    }
+}
+
 
 function* groupSaga() {
     yield takeLeading('FETCH_GROUP', fetchGroups);
@@ -68,6 +76,7 @@ function* groupSaga() {
     yield takeLeading('FETCH_ALL_GROUPS', fetchAllGroups);
     yield takeLeading('EDIT_GROUP', editGroup);
     yield takeLeading('DELETE_GROUP', deleteGroup);
+    yield takeLeading('JOIN_GROUP', joinGroup);
 }
 
 export default groupSaga;

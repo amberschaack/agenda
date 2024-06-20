@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup from '@mui/material/AvatarGroup';
 
 export default function GroupDetails() {
     const params = useParams();
@@ -26,7 +29,12 @@ export default function GroupDetails() {
             <h4>Group Members:</h4>
                 <ul>
                     {memberships.map((member) => (
+                        <>
                         <li key={member.id}>{member.username}</li>
+                        <AvatarGroup max={10}>
+                            <Avatar alt={member.username} src={member.user_avatar} />
+                        </AvatarGroup>
+                        </>
                     ))}
                 </ul>
         </div>

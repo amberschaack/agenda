@@ -3,26 +3,29 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import AboutPage from '../MUINavBar/MUINavBar';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
+    <>
+    <AboutPage />
     <div className="nav">
-      <Link to="/home">
+      {/* <Link to="/home">
         <h2 className="nav-title">Agenda</h2>
-      </Link>
+      </Link> */}
       <div>
         {/* If no user is logged in, show these links */}
-        {!user.id && (
+        {/* {!user.id && (
           // If there's no user, show login/registration links
           <Link className="navLink" to="/login">
             Login / Register
           </Link>
-        )}
+        )} */}
 
         {/* If a user is logged in, show these links */}
-        {user.id && (
+        {/* {user.id && (
           <>
             <Link className="navLink" to="/user">
               Home
@@ -46,13 +49,14 @@ function Nav() {
 
             <LogOutButton className="navLink" />
           </>
-        )}
+        )} */}
 
-        <Link className="navLink" to="/about">
+        {/* <Link className="navLink" to="/about">
           About
-        </Link>
+        </Link> */}
       </div>
     </div>
+    </>
   );
 }
 

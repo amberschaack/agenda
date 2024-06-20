@@ -3,7 +3,6 @@ import {useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import EditEvent from './EditEvent';
 
 export default function MyEvents() {
     const events = useSelector(store => store.event);
