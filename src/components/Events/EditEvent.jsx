@@ -10,9 +10,7 @@ export default function EditEvent() {
     const handleSubmit = (event) => {
         event.preventDefault();
         console.log('All my changes', eventDetails);
-        const myModifiedDetails = {event_date: eventDetails.event_date, event_time: eventDetails.event_time,
-            event_name: eventDetails.event_name, description: eventDetails.description, location: eventDetails.location};
-        dispatch({ type: 'EDIT_EVENT', payload: {eventId: eventDetails.event_id, details: myModifiedDetails} });
+        dispatch({ type: 'EDIT_EVENT', payload: {eventId: eventDetails.event_id, details: eventDetails} });
         history.push('/my-events');
     }
 

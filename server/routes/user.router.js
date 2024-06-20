@@ -50,4 +50,20 @@ router.post('/logout', (req, res, next) => {
   });
 });
 
+// Edit profile picture
+router.put('/', rejectUnauthenticated, (req, res) => {
+  console.log('req body', req.body);
+  console.log('req params', req.params);
+  const queryText = `UPDATE "users" SET "avatar"=$1
+                      WHERE "users".id=$2;`;
+  pool.query(queryText, [req.body.avatar, req.user.id])
+    .then((result) => {
+      res.sendStatus(200);
+  })
+  .catch((error) => {
+      console.log('Error in put, updating event:', error);
+      res.sendStatus(500);
+  });
+})
+
 module.exports = router;
