@@ -40,12 +40,34 @@ function* addGroup(action) {
     }
 }
 
+function* editGroup(action) {
+    try {
+        console.log('action payload', action.payload);
+        yield axios.put(`/api/group/${action.payload.groupId}`, action.payload.details);
+        yield put({ type: 'FETCH_GROUP_DETAILS', payload: action.payload.groupId });
+        yield put({ type: 'CLEAR_GROUP_DETAILS' });
+    } catch (error) {
+        console.log(`Error editing event`, error);
+    }
+}
+
+function* deleteGroup(action) {
+    try {
+        console.log('action payload', action.payload);
+        yield axios.delete(`/api/group/${action.payload}`);
+    } catch (error) {
+        console.log(`Error deleting event`, error);
+    }
+}
+
 
 function* groupSaga() {
     yield takeLeading('FETCH_GROUP', fetchGroups);
     yield takeLeading('FETCH_GROUP_DETAILS', fetchGroupDetails);
     yield takeLeading('ADD_GROUP', addGroup);
     yield takeLeading('FETCH_ALL_GROUPS', fetchAllGroups);
+    yield takeLeading('EDIT_GROUP', editGroup);
+    yield takeLeading('DELETE_GROUP', deleteGroup);
 }
 
 export default groupSaga;

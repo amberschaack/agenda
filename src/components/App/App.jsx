@@ -30,6 +30,7 @@ import GroupForm from '../Groups/GroupForm';
 import GroupDetails from '../Groups/GroupDetails';
 import SelectGroup from '../Groups/SelectGroup';
 import EditEvent from '../Events/EditEvent';
+import EditGroup from '../Groups/EditGroup';
 
 function App() {
   const dispatch = useDispatch();
@@ -145,6 +146,10 @@ function App() {
 
           <Route path='/event/edit/:id'>
             <EditEvent />
+          </Route>
+
+          <Route path='/group/edit/:id'>
+            <EditGroup />
           </Route>
 
           <Route path='/add-group'>

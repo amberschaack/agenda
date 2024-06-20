@@ -23,6 +23,12 @@ export default function MyGroups() {
         history.push(`/group/details/${groupid}`);
     }
 
+    const editGroup = (groupid) => {
+        console.log('Clicked', groupid);
+        dispatch({ type: 'FETCH_GROUP_DETAILS', payload: groupid });
+        history.push(`/group/edit/${groupid}`);
+    }
+
     return (
         <div className="container">
         <h1>My Groups</h1>
@@ -37,7 +43,7 @@ export default function MyGroups() {
             <h3>Manage My Groups</h3>
             <ul>
                 {myGroups.map((myGroup) => (
-                    <li key={myGroup.id} onClick={() => groupDetails(myGroup.id)}>{myGroup.name}</li>
+                    <li key={myGroup.id} onClick={() => editGroup(myGroup.id)}>{myGroup.name}</li>
                 ))}
             </ul>
         </>

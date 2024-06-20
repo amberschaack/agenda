@@ -60,11 +60,11 @@ export default function GroupForm() {
             <form onSubmit={addGroup}>
                 <input id='group-name' type='text' placeholder='Group Name' value={newGroup.name} onChange={handleChange} />
                 <input id='group-description' type='text' placeholder='Group Description' value={newGroup.description} onChange={handleChange} />
-                <h2>Upload New File</h2>
+                <h2>Select Group Photo</h2>
                     { /* This just sets up the window.cloudinary widget */ }
                     {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
 
-                    File to upload: <button type="button" onClick={openWidget}>Pick File</button>
+                    Photo to upload: <button type="button" onClick={openWidget}>Pick Photo</button>
                     <br />
                 <button>Create New Group</button>
             </form>

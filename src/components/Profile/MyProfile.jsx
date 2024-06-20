@@ -14,11 +14,6 @@ export default function MyProfile() {
    }
 
     const openWidget = () => {
-        // Currently there is a bug with the Cloudinary <Widget /> component
-        // where the button defaults to a non type="button" which causes the form
-        // to submit when clicked. So for now just using the standard widget that
-        // is available on window.cloudinary
-        // See docs: https://cloudinary.com/documentation/upload_widget#look_and_feel_customization
         !!window.cloudinary && window.cloudinary.createUploadWidget(
            {
               sources: ['local', 'url', 'camera'],
@@ -27,7 +22,6 @@ export default function MyProfile() {
            },
            (error, result) => {
               if (!error && result && result.event === "success") {
-                 // When an upload is successful, save the uploaded URL to local state!
                  setEditProfile({
                     ...editProfile,
                     avatar: result.info.secure_url

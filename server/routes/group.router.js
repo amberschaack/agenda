@@ -68,9 +68,9 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('req body', req.body);
   console.log('req params', req.params);
-  const queryText = `UPDATE groups SET name=$1, description=$2
-                      WHERE groups.id=$3 AND groups.owner=$4;`;
-  pool.query(queryText, [req.body.name, req.body.description, req.params.id, req.user.id])
+  const queryText = `UPDATE groups SET name=$1, description=$2, logo=$3
+                      WHERE groups.id=$4 AND groups.owner=$5;`;
+  pool.query(queryText, [req.body.name, req.body.description, req.body.logo, req.params.id, req.user.id])
     .then((result) => {
       res.sendStatus(200);
    })

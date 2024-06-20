@@ -68,6 +68,7 @@ export default function EventForm() {
             <br></br>
             <label htmlFor="event-type">Event Type:</label>
                 <select id="event-type" onChange={handleChange}>
+                <option selected>Select Event Type</option>
                     {types.map((type, i) => (
                         <option key={i}
                             placeholder='Event Type'
@@ -79,6 +80,7 @@ export default function EventForm() {
             <br></br>
             <label htmlFor="event-group">Select Group:</label>
                 <select id="event-group" onChange={handleChange}>
+                    <option selected>Select Group</option>
                     {groups.map((group, i) => (
                         <option key={i}
                             placeholder='Event Group'
