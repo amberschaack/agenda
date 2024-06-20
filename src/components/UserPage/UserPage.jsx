@@ -4,6 +4,10 @@ import {useSelector} from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { Typography } from '@mui/material';
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -38,8 +42,11 @@ function UserPage() {
   return (
     <>
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      {/* <p>Your ID is: {user.id}</p> */}
+    <Stack direction="row" spacing={2}>
+      <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
+      <Typography variant="h3">Welcome, {user.username}!</Typography>
+    </Stack>
+      {/* <h2>Welcome, {user.username}!</h2> */}
     </div>
     <div className="container">
       <h3>Upcoming Events</h3>

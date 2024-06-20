@@ -27,9 +27,7 @@ export default function Footer() {
   }
 
   return (
-    <Box sx={{ alignItems: 'center' }}>
-      <CssBaseline />
-      <Toolbar sx={{position: "fixed", bottom: 0, margin: "auto" }}>
+    <Box sx={{position: "fixed", bottom: 0, margin: "auto", width: "100vw" }}>
       <BottomNavigation
         showLabels
         value={value}
@@ -41,7 +39,6 @@ export default function Footer() {
         <BottomNavigationAction label="Events" icon={<EventIcon />} onClick={goEvents}/>
         <BottomNavigationAction label="Groups" icon={<GroupsIcon />} onClick={goGroups}/>
       </BottomNavigation>
-      </Toolbar>
     </Box>
   );
 }
