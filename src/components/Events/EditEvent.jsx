@@ -18,6 +18,12 @@ export default function EditEvent() {
         history.push('/my-events');
     }
 
+    const deleteEvent = (eventId) => {
+        console.log('clicked', eventId);
+        dispatch({ type: 'DELETE_EVENT', payload: eventId });
+        history.push('/my-events');
+    }
+
     return (
         <>
         <div className='container'>
@@ -38,6 +44,7 @@ export default function EditEvent() {
             <br></br>
             <button>Update Event</button>
         </form>
+            <button onClick={() => deleteEvent(eventDetails.event_id)}>Delete Event</button>
             <button onClick={backToMyEvents}>Cancel</button>
         </div>
         </>

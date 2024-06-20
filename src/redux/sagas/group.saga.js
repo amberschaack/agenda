@@ -47,7 +47,7 @@ function* editGroup(action) {
         yield put({ type: 'FETCH_GROUP_DETAILS', payload: action.payload.groupId });
         yield put({ type: 'CLEAR_GROUP_DETAILS' });
     } catch (error) {
-        console.log(`Error editing event`, error);
+        console.log(`Error editing group`, error);
     }
 }
 
@@ -56,7 +56,7 @@ function* deleteGroup(action) {
         console.log('action payload', action.payload);
         yield axios.delete(`/api/group/${action.payload}`);
     } catch (error) {
-        console.log(`Error deleting event`, error);
+        console.log(`Error deleting group`, error);
     }
 }
 

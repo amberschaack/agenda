@@ -63,6 +63,15 @@ function* editEvent(action) {
     }
 }
 
+function* deleteEvent(action) {
+    try {
+        console.log('action payload', action.payload);
+        yield axios.delete(`/api/event/${action.payload}`);
+    } catch (error) {
+        console.log(`Error deleting event`, error);
+    }
+}
+
 function* eventSaga() {
     yield takeLeading('FETCH_EVENT', fetchEvents);
     yield takeLeading('FETCH_EVENT_DETAILS', fetchEventDetails);
@@ -70,6 +79,7 @@ function* eventSaga() {
     yield takeLeading('ADD_EVENT', addEvent);
     yield takeLeading('FETCH_MY_EVENT', fetchMyEvents);
     yield takeLeading('EDIT_EVENT', editEvent);
+    yield takeLeading('DELETE_EVENT', deleteEvent);
 }
 
 export default eventSaga;
