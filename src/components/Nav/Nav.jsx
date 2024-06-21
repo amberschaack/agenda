@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
-import AboutPage from '../MUINavBar/MUINavBar';
+import MUINavBar from '../MUINavBar/MUINavBar';
 
 function Nav() {
   const user = useSelector((store) => store.user);
 
   return (
     <>
-    <AboutPage />
+    <MUINavBar />
     <div className="nav">
       {/* <Link to="/home">
         <h2 className="nav-title">Agenda</h2>
