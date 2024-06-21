@@ -30,6 +30,12 @@ export default function Footer() {
 
   return (
     <>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
     {user.id && (
       <Box sx={{position: "fixed", bottom: 0, margin: "auto", width: "100vw" }}>
         <BottomNavigation

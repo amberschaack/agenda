@@ -127,7 +127,7 @@ function MUINavBar() {
             <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src='/Users/amberschaack/Documents/EDA/tier3/agenda-solo-project/agenda/public/DefaultAvatar.png' />
+                <Avatar src="/public/DefaultAvatar.png" />
               </IconButton>
             </Tooltip>
             <Menu
