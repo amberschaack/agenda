@@ -53,7 +53,7 @@ function MUINavBar() {
   }
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#0097B2", height: "75px", padding: "10px"}}>
+    <AppBar position="static" sx={{ bgcolor: "#0097B2", height: "75px", padding: "10px" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography

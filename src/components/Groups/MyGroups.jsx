@@ -49,6 +49,7 @@ export default function MyGroups() {
         </>
         :
         <>
+        <h3>Manage My Groups</h3>
         <ul>
                 <li>You currently don't own any groups.</li>
                 <button>Create New Group</button>

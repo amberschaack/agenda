@@ -11,11 +11,11 @@ export default function MyEvents() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const pending = events.filter(event => event.status === 3);
+    const pending = events.filter(event => event.rsvp_status === null);
     console.log('Pending events:', pending);
-    const going = events.filter(event => event.status === 1);
-    const notGoing = events.filter(event => event.status === 2);
-    const myEvents = events.filter(event => event.admin === user.username);
+    const going = events.filter(event => event.rsvp_status === 1);
+    const notGoing = events.filter(event => event.rsvp_status === 2);
+    const myEvents = events.filter(event => event.event_admin === user.id);
     console.log('My events:', myEvents);
 
     useEffect(() => {

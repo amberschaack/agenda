@@ -2,21 +2,38 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 const { rejectUnauthenticated, rejectNonMembers } = require('../modules/authentication-middleware');
-// const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+// const memberships = useSelector(store => store.membership);
 
+// for (const member of memberships) {
+//     console.log(member.user_id);
+// }
 
 // This route returns the logged in users events
 router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/event GET route');
     // console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    const queryText = `SELECT events.event_name, events.event_id, event_date, "users".username AS admin, rsvp.status 
-                    FROM rsvp JOIN memberships 
-                    ON rsvp.membership_id=memberships.id
-                    JOIN events ON events.event_id=rsvp.event_id
-                    JOIN "users" ON "users".id=events.event_admin
-                    WHERE memberships.user_id=$1
-                    ORDER BY events.event_date;`;
+    const queryText = `SELECT
+    e.event_id,
+    e.event_date,
+    e.event_time,
+    e.event_name,
+    e.description AS event_description,
+    e.location,
+    e.event_type_id,
+    e.event_admin,
+    e.group_id,
+    e.photo,
+    r.status AS rsvp_status
+FROM 
+    events e
+INNER JOIN 
+    memberships m ON e.group_id = m.group_id
+LEFT JOIN 
+    rsvp r ON e.event_id = r.event_id AND m.id = r.membership_id
+WHERE 
+    m.user_id = $1
+ORDER BY e.event_date;`;
     pool.query(queryText, [req.user.id])
         .then((result) => {
         res.send(result.rows);
@@ -76,16 +93,6 @@ router.post('/', rejectNonMembers, async (req, res) => {
     // console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
     try {
-        // if they're not a member of this group, dont let them create an event
-        // const memberSql = `SELECT "id" FROM "memberships" WHERE "user_id"=$1 AND "group_id"=$2`;
-        // const memberResult = await pool.query(memberSql, [req.user.id, req.body.group_id]);
-        // console.log(memberResult.rows);
-        // if (memberResult.rows.length === 0) {
-        //     // there are no results, so they are not part of this group
-        //     res.status(400).send({error: 'You must be a member to create an event for this group'});
-        //     return; // exit the function
-        // }
-
         const eventQueryText = `INSERT INTO "events" ("event_date", "event_time", "event_name", "description", "location", "event_type_id", "event_admin", "group_id")
                             VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *;`;
         const result = await pool.query(eventQueryText, [req.body.event_date, req.body.event_time, req.body.event_name, req.body.description, req.body.location, req.body.event_type_id, req.user.id, req.body.group_id])

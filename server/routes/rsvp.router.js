@@ -40,17 +40,18 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 // Update an RSVP
 router.put('/:id', rejectUnauthenticated, (req, res) => {
     console.log('RSVP PUT route');
-    const queryText = `UPDATE rsvp SET status=$3
-	                    FROM memberships
-	                    WHERE rsvp.membership_id=memberships.id
-	                    AND memberships.user_id=$1
-	                    AND rsvp.event_id=$2;`;
-    pool.query(queryText, [req.user.id, req.params.id, req.body.status])
+    console.log('req body', req.body);
+    console.log('req user', req.user.id);
+    const queryText = `INSERT INTO rsvp (event_id, membership_id, status)
+                        VALUES ($2, (SELECT "id" FROM "memberships" WHERE "user_id"=$1 AND "group_id"=$4), $3)
+                        ON CONFLICT ("event_id", "membership_id")
+                        DO UPDATE SET status=$3;`;
+    pool.query(queryText, [req.user.id, req.params.id, req.body.status, req.body.group_id])
         .then((result) => {
             res.sendStatus(200);
         })
         .catch((error) => {
-            console.log('Error in put, updating event:', error);
+            console.log('Error in put, updating rsvp:', error);
             res.sendStatus(500);
         });
 })

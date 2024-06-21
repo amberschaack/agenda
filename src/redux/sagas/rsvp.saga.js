@@ -11,8 +11,19 @@ function* fetchRSVP(action) {
     }
 }
 
+function* updateRSVP(action) {
+    try {
+        console.log('action payload', action.payload);
+        yield axios.put(`/api/rsvp/${action.payload.id}`, action.payload);
+        yield put({ type: 'FETCH_RSVP', payload: action.payload.id});
+    } catch (error) {
+        console.log(`Error getting RSVPs`, error);
+    }
+}
+
 function* rsvpSaga() {
     yield takeLeading('FETCH_RSVP', fetchRSVP);
+    yield takeLeading('UPDATE_RSVP', updateRSVP);
 }
 
 export default rsvpSaga;

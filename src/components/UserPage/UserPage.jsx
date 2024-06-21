@@ -8,6 +8,9 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
 import EventItem from '../Events/EventItem';
+import Box from '@mui/joy/Box';
+import Button from '@mui/joy/Button';
+import Add from '@mui/icons-material/Add';
 
 
 function UserPage() {
@@ -18,17 +21,11 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const going = events.filter(event => event.status === 1);
+  const going = events.filter(event => event.rsvp_status != 2);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENT' })
   }, []);
-
-  const eventDetails = (eventid) => {
-    console.log('Clicked', eventid);
-    dispatch({ type: 'FETCH_EVENT_DETAILS', payload: eventid });
-    history.push(`/event/details/${eventid}`);
-  }
 
   const newEvent = () => {
     console.log('Clicked');
@@ -60,12 +57,11 @@ function UserPage() {
         )}
     </div>
     <div className='container'>
-      <button onClick={newEvent}>Create New Event</button>
+      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+        <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
+        <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newGroup} >Create New Group</Button>
+      </Box>
     </div>
-    <div className='container'>
-      <button onClick={newGroup}>Create New Group</button>
-    </div>
-    {/* <LogOutButton className="btn" /> */}
     </>
   );
 }
