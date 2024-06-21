@@ -57,7 +57,7 @@ router.get('/types', (req, res) => {
 router.get('/:event_id', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT events.event_id, events.description, events.event_date,
                         events.event_name, events.event_time, events.event_type_id,
-                        events.group_id, events.location, "users".username, "users".avatar
+                        events.group_id, events.location, "users".username, "users".avatar, events.photo
                         FROM events
 	                    JOIN "users" ON "users".id=events.event_admin
 	                    WHERE events.event_id=$1;`;

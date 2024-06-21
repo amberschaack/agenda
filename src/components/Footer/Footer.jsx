@@ -45,9 +45,9 @@ export default function Footer() {
             setValue(newValue);
           }}
         >
-          <BottomNavigationAction label="Home" icon={<HomeIcon />} onClick={goHome}/>
-          <BottomNavigationAction label="Events" icon={<EventIcon />} onClick={goEvents}/>
-          <BottomNavigationAction label="Groups" icon={<GroupsIcon />} onClick={goGroups}/>
+          <BottomNavigationAction sx={{ color: "#1B9AAA" }} label="Home" icon={<HomeIcon  sx={{ color: "#0097B2" }} />} onClick={goHome} />
+          <BottomNavigationAction sx={{ color: "#1B9AAA" }} label="Events" icon={<EventIcon sx={{ color: "#0097B2" }} />} onClick={goEvents}/>
+          <BottomNavigationAction sx={{ color: "#1B9AAA" }} label="Groups" icon={<GroupsIcon sx={{ color: "#0097B2" }} />} onClick={goGroups}/>
         </BottomNavigation>
       </Box>
     )}

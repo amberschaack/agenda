@@ -2,6 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
+  /* background-image: url(/public/background.jpg);
+  background-size: cover; */
 }
 
 body {
@@ -12,6 +14,12 @@ body {
 img {
   display: inline-block;
   max-width: 100%;
+}
+
+#card {
+  display: inline-block;
+  text-align: center;
+  margin: 10px;
 }
 
 /* --------------------------------------------------------------------------------

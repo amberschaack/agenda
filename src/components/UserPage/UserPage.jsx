@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
+import EventItem from '../Events/EventItem';
 
 
 function UserPage() {
@@ -42,19 +43,21 @@ function UserPage() {
   return (
     <>
     <div className="container">
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} sx={{ paddingBottom: "50px" }}>
       <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
       <Typography variant="h3">Welcome, {user.username}!</Typography>
     </Stack>
-      {/* <h2>Welcome, {user.username}!</h2> */}
+    <Stack direction="row" spacing={2} sx={{ padding: "10px" }}>
+      <Typography variant="h4">
+        Upcoming Events
+      </Typography>
+      <Avatar src="/public/calendar.png" variant="square" />
+    </Stack>
     </div>
     <div className="container">
-      <h3>Upcoming Events</h3>
-      <ul>
         {going.map((event) =>
-          <li key={event.event_id} onClick={() => eventDetails(event.event_id)}>{event.event_name}</li>  
+          <EventItem key={event.event_id} event={event} />  
         )}
-      </ul>
     </div>
     <div className='container'>
       <button onClick={newEvent}>Create New Event</button>
