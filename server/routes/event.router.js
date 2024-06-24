@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     e.event_type_id,
     e.event_admin,
     e.group_id,
-    e.photo,
+    groups.logo,
     r.status AS rsvp_status
 FROM 
     events e
@@ -31,6 +31,7 @@ INNER JOIN
     memberships m ON e.group_id = m.group_id
 LEFT JOIN 
     rsvp r ON e.event_id = r.event_id AND m.id = r.membership_id
+JOIN groups ON groups.id=e.group_id
 WHERE 
     m.user_id = $1
 ORDER BY e.event_date;`;
@@ -45,9 +46,11 @@ ORDER BY e.event_date;`;
 
 // Returns all events owned by user
 router.get('/my-event', rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT * FROM events
-	                    JOIN "users" ON "users".id=events.event_admin
-	                    WHERE events.event_admin=$1;`;
+    const queryText = `SELECT events.event_id, events.description, events.event_date, events.event_name, events.event_time, events.event_type_id,
+                        events.group_id, events.location, "users".username, "users".avatar, groups.logo 
+                        FROM events JOIN "users" ON "users".id=events.event_admin
+                        JOIN "groups" ON groups.id=events.group_id
+                        WHERE events.event_admin=$1;`;
     pool.query(queryText, [req.user.id])
         .then((result) => {
             console.log(result.rows);
@@ -74,9 +77,10 @@ router.get('/types', (req, res) => {
 router.get('/:event_id', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT events.event_id, events.description, events.event_date,
                         events.event_name, events.event_time, events.event_type_id,
-                        events.group_id, events.location, "users".username, "users".avatar, events.photo
+                        events.group_id, events.location, "users".username, "users".avatar, groups.logo
                         FROM events
 	                    JOIN "users" ON "users".id=events.event_admin
+                        JOIN groups ON groups.id=events.group_id
 	                    WHERE events.event_id=$1;`;
     pool.query(queryText, [req.params.event_id])
         .then((result) => {res.send(result.rows[0])})

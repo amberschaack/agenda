@@ -7,29 +7,21 @@ import CardContent from '@mui/joy/CardContent';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 
-export default function GroupItems({ group }) {
+export default function MyGroupItems({ group }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const user = useSelector(store => store.user);
     console.log('user', user);
-    // console.log('array includes', user.memberships.includes(group.id));
-
-    const [joined, setJoined] = useState(false);
-
-    const joinGroup = (groupId) => {
-        console.log('Clicked', groupId);
-        dispatch({ type: 'JOIN_GROUP', payload: groupId });
-        setJoined(!joined);
-    }
-
-    const unjoinGroup = (groupId) => {
-        dispatch({ type: 'UNJOIN_GROUP', payload: groupId});
-        setJoined(!joined);
-    }
 
     const groupDetails = (groupId) => {
         dispatch({ type: 'FETCH_GROUP_DETAILS', payload: groupId });
         history.push(`/group/details/${groupId}`);
+    }
+
+    const editGroup = (groupid) => {
+        console.log('Clicked', groupid);
+        dispatch({ type: 'FETCH_GROUP_DETAILS', payload: groupid });
+        history.push(`/group/edit/${groupid}`);
     }
 
     return (
@@ -45,9 +37,8 @@ export default function GroupItems({ group }) {
                         {group.name}
                     </Typography>
                 </CardContent>
-                {!joined && !user.memberships?.includes(group.id) ? 
                 <CardOverflow
-                    onClick={() => joinGroup(group.id)}
+                    onClick={() => editGroup(group.id)}
                     variant="soft"
                     color="primary"
                     sx={{
@@ -62,28 +53,8 @@ export default function GroupItems({ group }) {
                     borderColor: 'divider',
                     }}
                 >
-                    Join
+                    Edit
                 </CardOverflow>
-                :
-                <CardOverflow
-                onClick={() => unjoinGroup(group.id)}
-                variant="soft"
-                color="primary"
-                sx={{
-                px: 2,
-                writingMode: 'vertical-rl',
-                justifyContent: 'center',
-                fontSize: 'xs',
-                fontWeight: 'xl',
-                letterSpacing: '1px',
-                textTransform: 'uppercase',
-                borderLeft: '1px solid',
-                borderColor: 'divider',
-                }}
-            >
-                Unjoin
-            </CardOverflow>
-                }
             </Card>
         </>
     )

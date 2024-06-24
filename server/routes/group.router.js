@@ -9,10 +9,25 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // const queryText = `SELECT groups.name, groups.id, groups.owner FROM groups JOIN memberships ON groups.id=memberships.group_id
   //                   JOIN "users" ON "users".id=memberships.user_id WHERE users.id=$1;`;
   const queryText = `SELECT groups.id, groups.name, groups.logo, groups.description, groups.privacy_type, 
-                        "users".username AS owner, "users".avatar 
+                        "users".username, "users".avatar 
                         FROM groups JOIN memberships on memberships.group_id=groups.id
                         JOIN "users" on "users".id=memberships.user_id
                         WHERE "users".id=$1;`
+  pool.query(queryText, [req.user.id])
+    .then((result) => {
+      res.send(result.rows);
+    }).catch((error) => {
+      console.log(error);
+      res.sendStatus(500);
+  });
+});
+
+// GET route returns groups that user owns
+router.get('/my-group', rejectUnauthenticated, (req, res) => {
+  console.log('/group/my-group GET route');
+  const queryText = `SELECT groups.id, groups.owner, groups.name, groups.description, "users".username, "users".avatar, groups.logo FROM groups 
+                    JOIN "users" on "users".id=groups.owner
+                      WHERE "users".id=$1;`
   pool.query(queryText, [req.user.id])
     .then((result) => {
       res.send(result.rows);

@@ -11,6 +11,16 @@ function* fetchGroups() {
     }
 }
 
+function* fetchMyGroups() {
+    try {
+        const result = yield axios.get('/api/group/my-group');
+        yield put({ type: 'SET_MY_GROUP', payload: result.data });
+        console.log(result);
+    } catch (error) {
+        console.log(`Error getting my groups`, error);
+    }
+}
+
 function* fetchGroupDetails(action) {
     try {
         const result = yield axios.get(`/api/group/${action.payload}`);
@@ -68,6 +78,7 @@ function* groupSaga() {
     yield takeLeading('FETCH_ALL_GROUPS', fetchAllGroups);
     yield takeLeading('EDIT_GROUP', editGroup);
     yield takeLeading('DELETE_GROUP', deleteGroup);
+    yield takeLeading('FETCH_MY_GROUP', fetchMyGroups);
 }
 
 export default groupSaga;

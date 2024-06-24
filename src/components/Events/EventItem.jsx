@@ -3,35 +3,87 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import moment from 'moment/moment';
-import { Grid } from '@mui/joy';
-import { useDispatch } from 'react-redux';
+import { CardOverflow, Grid } from '@mui/joy';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import CardContent from '@mui/joy/CardContent';
 
 export default function EventItem({ event }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const user = useSelector(store => store.user);
+    console.log('User', user);
+    console.log('event', event);
 
 
     const eventDetails = (eventid) => {
         console.log('Clicked', eventid);
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: eventid });
         history.push(`/event/details/${eventid}`);
-      }
+    }
+
+    const editEvent = (eventid) => {
+        console.log('Clicked', eventid);
+        dispatch({ type: 'FETCH_EVENT_DETAILS', payload: eventid });
+        history.push(`/event/edit/${eventid}`);
+    }
 
     return (
         <>
-        <Grid>
-            <Card sx={{ width: 250, height: 200, flexGrow: 1, mb: 2 }} id='card'
-            onClick={() => eventDetails(event.event_id)}>
-                <div>
-                    <Typography level="title-lg" noWrap>{event.event_name}</Typography>
-                    <Typography level="body-sm">{moment(event.event_date).format('LL')}</Typography>
-                </div>
-                <AspectRatio minHeight="50px" maxHeight="200px">
-                    <img src={event.photo} loading="lazy" />
-                </AspectRatio>
+            <Card orientation="horizontal" variant="outlined" sx={{ width: 270 }}>
+                <CardOverflow>
+                    <AspectRatio ratio="1" sx={{ width: 90 }}>
+                        <img src={event.logo} />
+                    </AspectRatio>
+                </CardOverflow>
+                <CardContent>
+                    <Typography fontWeight="md">
+                        {event.event_name}
+                    </Typography>
+                    <Typography level="body-sm">
+                        {moment(event.event_date).format('LL')}
+                    </Typography>
+                </CardContent>
+                {user.username === event.username ? 
+                <CardOverflow
+                    onClick={() => editEvent(event.event_id)}
+                    variant="soft"
+                    color="primary"
+                    sx={{
+                    px: 2,
+                    writingMode: 'vertical-rl',
+                    justifyContent: 'center',
+                    fontSize: 'xs',
+                    fontWeight: 'xl',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    borderLeft: '1px solid',
+                    borderColor: 'divider',
+                    }}
+                >
+                    EDIT
+                </CardOverflow>
+                :
+                <CardOverflow
+                    onClick={() => eventDetails(event.event_id)}
+                    variant="soft"
+                    color="primary"
+                    sx={{
+                    px: 2,
+                    writingMode: 'vertical-rl',
+                    justifyContent: 'center',
+                    fontSize: 'xs',
+                    fontWeight: 'xl',
+                    letterSpacing: '1px',
+                    textTransform: 'uppercase',
+                    borderLeft: '1px solid',
+                    borderColor: 'divider',
+                    }}
+                >
+                    VIEW
+                </CardOverflow>
+                }
             </Card>
-        </Grid>
         </>
     )
 }

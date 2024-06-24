@@ -46,13 +46,13 @@ export default function EventDetails() {
 
     return (
         <div className="container">
-        <Grid >
+        <Grid>
             <Card sx={{width: 325, maxWidth: '100%' }}>
                 <Typography level="title-lg" noWrap>{eventDetails.event_name}</Typography>
                 <Typography level="body-md">Hosted By: {eventDetails.username}</Typography>
                 <CardOverflow>
                     <AspectRatio sx={{ minWidth: 200 }}>
-                        <img src={eventDetails.photo} />
+                        <img src={eventDetails.logo} />
                     </AspectRatio>
                 </CardOverflow>
                 <CardContent>

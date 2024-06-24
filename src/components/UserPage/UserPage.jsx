@@ -19,7 +19,7 @@ function UserPage() {
   const events = useSelector((store) => store.event);
   const groups = useSelector((store) => store.allGroups);
   console.log('Groups:', groups);
-  console.log(events);
+  console.log('Events', events);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,6 +30,7 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENT' });
+    // dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ALL_GROUPS' });
   }, []);
 
@@ -46,10 +47,12 @@ function UserPage() {
   return (
     <>
     <div className="container">
-    <Stack direction="row" spacing={2} sx={{ paddingBottom: "50px" }}>
+    <Stack direction="row" spacing={2} sx={{ paddingBottom: "10px" }}>
       <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
       <Typography variant="h3">Welcome, {user.username}!</Typography>
     </Stack>
+    </div>
+    <div className='container'>
     <Stack direction="row" spacing={2} sx={{ padding: "10px" }}>
       <Typography variant="h4">
         Upcoming Events
@@ -62,6 +65,9 @@ function UserPage() {
           <EventItem key={event.event_id} event={event} />  
         )}
     </div>
+    <div className='container'>
+      <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
+    </div>
     <div className="container">
       <Typography variant="h4">
         Explore New Groups
@@ -72,7 +78,6 @@ function UserPage() {
     </div>
     <div className='container'>
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-        <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
         <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newGroup} >Create New Group</Button>
       </Box>
     </div>

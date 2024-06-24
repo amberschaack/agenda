@@ -18,6 +18,7 @@ export default function SelectGroup() {
 
     const nextPage = () => {
         history.push('/user');
+        dispatch({ type: 'FETCH_GROUP' });
     }
 
     return (
