@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function MyGroups() {
     const groups = useSelector(store => store.group);
-    console.log(groups);
+    console.log('groups', groups);
     const user = useSelector(store => store.user);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -15,8 +15,8 @@ export default function MyGroups() {
         dispatch({ type: 'FETCH_GROUP' });
     }, []);
 
-    const myGroups = groups.filter(group => group.owner === user.id);
-    console.log(myGroups);
+    const myGroups = groups.filter(group => group.owner === user.username);
+    console.log('My groups:', myGroups);
 
     const groupDetails = (groupid) => {
         dispatch({ type: 'FETCH_GROUP_DETAILS', payload: groupid });

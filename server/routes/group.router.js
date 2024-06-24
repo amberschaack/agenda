@@ -6,8 +6,13 @@ const router = express.Router();
 // GET route to return logged in users groups
 router.get('/', rejectUnauthenticated, (req, res) => {
   console.log('/group GET route');
-  const queryText = `SELECT groups.name, groups.id, groups.owner FROM groups JOIN memberships ON groups.id=memberships.group_id
-                    JOIN "users" ON "users".id=memberships.user_id WHERE users.id=$1;`;
+  // const queryText = `SELECT groups.name, groups.id, groups.owner FROM groups JOIN memberships ON groups.id=memberships.group_id
+  //                   JOIN "users" ON "users".id=memberships.user_id WHERE users.id=$1;`;
+  const queryText = `SELECT groups.id, groups.name, groups.logo, groups.description, groups.privacy_type, 
+                        "users".username AS owner, "users".avatar 
+                        FROM groups JOIN memberships on memberships.group_id=groups.id
+                        JOIN "users" on "users".id=memberships.user_id
+                        WHERE "users".id=$1;`
   pool.query(queryText, [req.user.id])
     .then((result) => {
       res.send(result.rows);
@@ -54,8 +59,8 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     const createdGroupId = result.rows[0].id;
     console.log(result.rows);
     console.log('Group ID:', createdGroupId);
-    const membershipText = `INSERT INTO memberships ("user_id", "group_id")
-                            VALUES ($1, $2);`;
+    const membershipText = `INSERT INTO memberships ("user_id", "group_id", "user_avatar")
+                            VALUES ($1, $2, (SELECT "avatar" FROM "users" WHERE "users".id=$1));`;
     const result2 = await pool.query(membershipText, [req.user.id, createdGroupId]);
     res.send(result2.rows[0]);
   } catch (error) {

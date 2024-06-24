@@ -28,7 +28,7 @@ export default function GroupDetails() {
             <h4>{groupDetails.description}</h4>
             <h4>Group Members:</h4>
                 <ul>
-                    {memberships.map((member) => (
+                    {memberships.map((member, i) => (
                         <>
                         <li key={member.id}>{member.username}</li>
                         <AvatarGroup max={10}>

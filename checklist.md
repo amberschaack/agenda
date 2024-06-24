@@ -19,14 +19,14 @@
 [X] Home // Populates user's upcoming events
 [] My Events
 [] My Groups
+    [] Populate available groups
 [] My Profile
 [] About
 [X] Event Details
-    [] STRETCH: Show map of location
 [] Group Details
 
 ## UPLOADS
-[] Incorporate Cloudinary on image uploads
+[X] Incorporate Cloudinary on image uploads
     -- User avatar
     -- Group avatar
     -- Event avatar ??
@@ -36,8 +36,6 @@
 [] Set up checkbox upon registration to receive notifications
 
 ## MISC
-[] Make user choose a 'default' group upon registration
-    --'Fargo Events', 'Minneapolis Events', etc.
-[] Use Moment to get dates to show up better
+[X] Use Moment to get dates to show up better
 [] Completed Event management
     --Archive

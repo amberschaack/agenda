@@ -11,20 +11,26 @@ import EventItem from '../Events/EventItem';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
+import GroupItems from '../Groups/GroupItems';
 
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const events = useSelector((store) => store.event);
+  const groups = useSelector((store) => store.allGroups);
+  console.log('Groups:', groups);
   console.log(events);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const going = events.filter(event => event.rsvp_status != 2);
+  console.log(user.memberships);
+  const nonGroup = groups.filter(group => !user.memberships.includes(group.id));
+  console.log('Non groups', nonGroup);
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_EVENT' })
+    dispatch({ type: 'FETCH_EVENT' });
+    dispatch({ type: 'FETCH_ALL_GROUPS' });
   }, []);
 
   const newEvent = () => {
@@ -55,6 +61,14 @@ function UserPage() {
         {going.map((event) =>
           <EventItem key={event.event_id} event={event} />  
         )}
+    </div>
+    <div className="container">
+      <Typography variant="h4">
+        Explore New Groups
+      </Typography>
+      {nonGroup.map((group) => (
+        <GroupItems key={group.id} group={group} />
+      ))}
     </div>
     <div className='container'>
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>

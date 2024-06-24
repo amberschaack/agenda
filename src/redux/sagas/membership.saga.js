@@ -11,8 +11,26 @@ function* fetchMemberships(action) {
     }
 }
 
+function* joinGroup(action) {
+    try {
+        yield axios.post(`/api/membership/${action.payload}`);
+    } catch (error) {
+        console.log(`Error joining group`, error);
+    }
+}
+
+function* unjoinGroup(action) {
+    try {
+        yield axios.delete(`/api/membership/${action.payload}`);
+    } catch (error) {
+        console.log(`Error unjoining group`, error);
+    }
+}
+
 function* membershipSaga() {
     yield takeLeading('FETCH_MEMBERSHIPS', fetchMemberships);
+    yield takeLeading('JOIN_GROUP', joinGroup);
+    yield takeLeading('UNJOIN_GROUP', unjoinGroup);
 }
 
 export default membershipSaga;
