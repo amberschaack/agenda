@@ -30,7 +30,6 @@ function UserPage() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EVENT' });
-    // dispatch({ type: 'FETCH_USER' });
     dispatch({ type: 'FETCH_ALL_GROUPS' });
   }, []);
 

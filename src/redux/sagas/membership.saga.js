@@ -14,6 +14,7 @@ function* fetchMemberships(action) {
 function* joinGroup(action) {
     try {
         yield axios.post(`/api/membership/${action.payload}`);
+        yield put({ type: 'FETCH_USER' });
     } catch (error) {
         console.log(`Error joining group`, error);
     }
