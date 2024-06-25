@@ -9,6 +9,9 @@ import moment from 'moment/moment';
 import { CardOverflow, Grid } from '@mui/joy';
 import { CardActions, CardContent } from "@mui/material";
 import Button from '@mui/joy/Button';
+import Avatar from '@mui/joy/Avatar';
+import AvatarGroup from '@mui/joy/AvatarGroup';
+import Divider from '@mui/joy/Divider';
 
 export default function EventDetails() {
     const params = useParams();
@@ -21,6 +24,7 @@ export default function EventDetails() {
     console.log('Attendees Store:', attendeesStore);
 
     const attendees = attendeesStore.filter(attendee => attendee.status === 1);
+    console.log('attendees', attendees);
 
     const going = attendees.some(attendee => attendee.username === user.username && attendee.status === 1);
     console.log('going', going);
@@ -44,6 +48,24 @@ export default function EventDetails() {
         dispatch({ type: 'UPDATE_RSVP', payload: {id: Number(params.id), status: Number(status), group_id: eventDetails.group_id }});
     }
 
+    function clampAvatars(attendees, options = { max: 6 }) {
+        const { max = 6, total } = options;
+        let clampedMax = max < 2 ? 2 : max;
+        const totalAvatars = total || attendees.length;
+        if (totalAvatars === clampedMax) {
+          clampedMax += 1;
+        }
+        clampedMax = Math.min(totalAvatars + 1, clampedMax);
+        const maxAvatars = Math.min(attendees.length, clampedMax - 1);
+        const surplus = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
+        return { avatars: attendees.slice(0, maxAvatars).reverse(), surplus };
+      }
+
+      const { avatars, surplus } = clampAvatars(attendees, {
+        max: 6,
+        total: attendees.total,
+      });
+
     return (
         <div className="container">
         <Grid>
@@ -56,23 +78,35 @@ export default function EventDetails() {
                     </AspectRatio>
                 </CardOverflow>
                 <CardContent>
+                    <Typography level='body-md' fontWeight='bold'>Event Date:</Typography>
                     <Typography level="body-lg">
-                        Date: {moment(eventDetails.event_date).format('LL')}
+                        {moment(eventDetails.event_date).format('LL')}
                     </Typography>
+                    <Divider inset="none" />
+                    <Typography level='body-md' fontWeight='bold'>Event Time:</Typography>
                     <Typography level="body-lg">
-                        Time: {eventDetails.event_time}
+                        {eventDetails.event_time}
                     </Typography>
+                    <Divider inset="none" />
+                    <Typography level='body-md' fontWeight='bold'>Event Location:</Typography>
                     <Typography level="body-lg">
-                        Location: {eventDetails.location}
+                        {eventDetails.location}
                     </Typography>
+                    <Divider inset="none" />
+                    <Typography level='body-md' fontWeight='bold'>Event Details:</Typography>
                     <Typography level="body-lg">
-                        Details: {eventDetails.description}
+                        {eventDetails.description}
                     </Typography>
-                    <Typography level="body-lg">
-                        Attendees: {attendees.map((attendee, i) =>
-                        <li key={i}>{attendee.username}</li>
-                        )}
-                    </Typography>
+                    <Divider inset="none" />
+                    <Typography level='body-md' fontWeight='bold' sx={{ mb: '10px' }}>Attendees:</Typography>
+                    <AvatarGroup sx={{ flexDirection: 'row', "--Avatar-size": "52px" }}>
+                        {avatars.map((attendee, i) => (
+                            <>
+                                <Avatar alt={attendee.username} src={attendee.user_avatar} key={attendee.id} />
+                            </>
+                        ))}
+                        {!!surplus && <Avatar>+{surplus}</Avatar>}
+                    </AvatarGroup>
                 </CardContent>
                 <CardActions>
                     {going ? 

@@ -25,6 +25,24 @@ export default function GroupDetails() {
         dispatch({ type: 'FETCH_MEMBERSHIPS', payload: params.id });
     }, []);
 
+    function clampAvatars(memberships, options = { max: 6 }) {
+        const { max = 6, total } = options;
+        let clampedMax = max < 2 ? 2 : max;
+        const totalAvatars = total || memberships.length;
+        if (totalAvatars === clampedMax) {
+          clampedMax += 1;
+        }
+        clampedMax = Math.min(totalAvatars + 1, clampedMax);
+        const maxAvatars = Math.min(memberships.length, clampedMax - 1);
+        const surplus = Math.max(totalAvatars - clampedMax, totalAvatars - maxAvatars, 0);
+        return { avatars: memberships.slice(0, maxAvatars).reverse(), surplus };
+      }
+
+      const { avatars, surplus } = clampAvatars(memberships, {
+        max: 6,
+        total: memberships.total,
+      });
+
     return (
         <div className="container">
         <Grid>
@@ -40,12 +58,13 @@ export default function GroupDetails() {
                     <Typography level='body-md' fontWeight='bold'>Group Description:</Typography>
                     <Typography level='body-md' sx={{ mb: '10px' }}>{groupDetails.description}</Typography>
                     <Typography level='body-md' fontWeight='bold' sx={{ mb: '10px' }}>Group Members:</Typography>
-                    <AvatarGroup max={10} sx={{ flexDirection: 'row', "--Avatar-size": "52px" }}>
-                        {memberships.map((member, i) => (
+                    <AvatarGroup sx={{ flexDirection: 'row', "--Avatar-size": "52px" }}>
+                        {avatars.map((member, i) => (
                             <>
                                 <Avatar alt={member.username} src={member.user_avatar} key={member.id} />
                             </>
                         ))}
+                        {!!surplus && <Avatar>+{surplus}</Avatar>}
                     </AvatarGroup>
                     </CardContent>
                     </Card>

@@ -2,12 +2,8 @@ html,
 body,
 #react-root {
   height: 100%;
-  /* background-image: url(/public/background.jpg);
+  /* background-image: url(/background.jpg);
   background-size: cover; */
-}
-
-.event-name {
-  /* white-space: wrap; */
 }
 
 body {

@@ -12,6 +12,7 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Add from '@mui/icons-material/Add';
 import GroupItems from '../Groups/GroupItems';
+import { Divider } from '@mui/joy';
 
 
 function UserPage() {
@@ -46,40 +47,35 @@ function UserPage() {
   return (
     <>
     <div className="container">
-    <Stack direction="row" spacing={2} sx={{ paddingBottom: "10px" }}>
+    <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
       <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
-      <Typography variant="h3">Welcome, {user.username}!</Typography>
+      <Typography variant="h4">Welcome, {user.username}!</Typography>
     </Stack>
+    <Divider inset="none" />
     </div>
-    <div className='container'>
-    <Stack direction="row" spacing={2} sx={{ padding: "10px" }}>
+    <Stack direction="row" spacing={2} sx={{ padding: "10px" }} justifyContent="center" alignItems="center">
       <Typography variant="h4">
         Upcoming Events
       </Typography>
       <Avatar src="calendar.png" variant="square" />
     </Stack>
-    </div>
-    <div className="container">
+      <Stack direction="column" spacing={2} justifyContent="space-around" alignItems="center" >
         {going.slice(0, 4).map((event) =>
           <EventItem key={event.event_id} event={event} />  
         )}
-    </div>
-    <div className='container'>
-      <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
-    </div>
-    <div className="container">
+      <Button sx={{ bgcolor: "#0097B2", mb: "10px" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
+      </Stack>
+    <Stack direction="row" spacing={2} sx={{ padding: "20px" }} justifyContent="center" alignItems="center">
       <Typography variant="h4">
         Explore New Groups
       </Typography>
+      </Stack>
+      <Stack direction="column" spacing={2} justifyContent="space-around" alignItems="center" >
       {nonGroup.map((group) => (
         <GroupItems key={group.id} group={group} />
       ))}
-    </div>
-    <div className='container'>
-      <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
         <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newGroup} >Create New Group</Button>
-      </Box>
-    </div>
+      </Stack>
     </>
   );
 }

@@ -24,11 +24,9 @@ export default function SelectGroup() {
     return (
         <div className="container">
             <h1>Select a Group to Join:</h1>
-            <ul>
                 {groups.map((group) => (
                     <GroupItems key={group.id} group={group}/>
                 ))}
-            </ul>
             <button onClick={nextPage}>Done</button>
         </div>
     )

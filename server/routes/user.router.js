@@ -51,19 +51,22 @@ router.post('/logout', (req, res, next) => {
 });
 
 // Edit profile picture
-router.put('/', rejectUnauthenticated, (req, res) => {
+router.put('/', rejectUnauthenticated, async (req, res) => {
   console.log('req body', req.body);
   console.log('req params', req.params);
-  const queryText = `UPDATE "users" SET "avatar"=$1
-                      WHERE "users".id=$2;`;
-  pool.query(queryText, [req.body.avatar, req.user.id])
-    .then((result) => {
-      res.sendStatus(200);
-  })
-  .catch((error) => {
-      console.log('Error in put, updating event:', error);
+  try {
+    const queryText = `UPDATE "users" SET "avatar"=$1
+                        WHERE "users".id=$2;`;
+    await pool.query(queryText, [req.body.avatar, req.user.id])
+    console.log('avatar', req.body.avatar);
+    const queryText2 = `UPDATE "memberships" SET "user_avatar"=$1
+                       WHERE user_id=$2;`;
+    await pool.query(queryText2, [req.body.avatar, req.user.id])
+    res.sendStatus(200);
+} catch(error) {
+      console.log('Error in put, updating profile picture:', error);
       res.sendStatus(500);
-  });
+  }
 })
 
 module.exports = router;
