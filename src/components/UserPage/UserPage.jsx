@@ -53,13 +53,13 @@ function UserPage() {
     </Stack>
     <Divider inset="none" />
     </div>
-    <Stack direction="row" spacing={2} sx={{ padding: "10px" }} justifyContent="center" alignItems="center">
+    <Stack direction="row" spacing={1} sx={{ padding: "10px" }} justifyContent="center" alignItems="center">
       <Typography variant="h4">
         Upcoming Events
       </Typography>
       <Avatar src="calendar.png" variant="square" />
     </Stack>
-      <Stack direction="column" spacing={2} justifyContent="space-around" alignItems="center" >
+      <Stack direction="column" spacing={1} justifyContent="space-around" alignItems="center" >
         {going.slice(0, 4).map((event) =>
           <EventItem key={event.event_id} event={event} />  
         )}
@@ -70,7 +70,7 @@ function UserPage() {
         Explore New Groups
       </Typography>
       </Stack>
-      <Stack direction="column" spacing={2} justifyContent="space-around" alignItems="center" >
+      <Stack direction="column" spacing={1} justifyContent="space-around" alignItems="center" >
       {nonGroup.map((group) => (
         <GroupItems key={group.id} group={group} />
       ))}

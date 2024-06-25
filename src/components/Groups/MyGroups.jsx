@@ -5,6 +5,9 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import GroupItems from './GroupItems';
 import MyGroupItems from './MyGroupItems';
+import { Stack, Typography } from '@mui/joy';
+import Add from '@mui/icons-material/Add';
+import Button from '@mui/joy/Button';
 
 export default function MyGroups() {
     const groups = useSelector(store => store.group);
@@ -20,36 +23,36 @@ export default function MyGroups() {
         dispatch({ type: 'FETCH_MY_GROUP' });
     }, []);
 
-    // const myGroups = groups.filter(group => group.owner === user.username);
-    // console.log('My groups:', myGroups);
-
-
+    const newGroup = () => {
+        console.log('Clicked');
+        history.push('/add-group');
+      }
 
     return (
         <div className="container">
         <h1>My Groups</h1>
         <h3>Joined Groups</h3>
-            <div className='container'>
+        <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                 {groups.map((group) => (
                     <GroupItems key={group.id} group={group} />
                 ))}
-            </div>
+        </Stack>
         {myGroups.length>0 ? 
         <>
         <h3>Manage My Groups</h3>
-            <div className='container'>
+        <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                 {myGroups.map((group) => (
                     <MyGroupItems key={group.id} group={group} />
                 ))}
-            </div>
+        </Stack>
         </>
         :
         <>
         <h3>Manage My Groups</h3>
-        <ul>
-                <li>You currently don't own any groups.</li>
-                <button>Create New Group</button>
-            </ul>
+        <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
+                <Typography fontSize='20px'>You currently don't own any groups.</Typography>
+                <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newGroup} >Create New Group</Button>
+        </Stack>
         </>
         }
         </div>

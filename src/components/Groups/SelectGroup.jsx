@@ -3,8 +3,9 @@ import {useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import GroupItems from './GroupItems';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
+import { useHistory } from 'react-router-dom/';
+import { Stack } from '@mui/joy';
+import Button from '@mui/joy/Button';
 
 export default function SelectGroup() {
     const dispatch = useDispatch();
@@ -22,12 +23,12 @@ export default function SelectGroup() {
     }
 
     return (
-        <div className="container">
+        <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ padding: "10px" }}>
             <h1>Select a Group to Join:</h1>
                 {groups.map((group) => (
                     <GroupItems key={group.id} group={group}/>
                 ))}
-            <button onClick={nextPage}>Done</button>
-        </div>
+                <Button sx={{ bgcolor: "#0097B2" }} onClick={nextPage} >Next</Button>
+        </Stack>
     )
 }

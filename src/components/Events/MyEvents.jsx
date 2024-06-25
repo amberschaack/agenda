@@ -7,10 +7,11 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import moment from 'moment/moment';
-import { CardOverflow, Grid } from '@mui/joy';
+import { CardOverflow, Grid, Stack } from '@mui/joy';
 import { CardActions, CardContent } from "@mui/material";
 import Button from '@mui/joy/Button';
 import EventItem from '../Events/EventItem';
+import Add from '@mui/icons-material/Add';
 
 export default function MyEvents() {
     const events = useSelector(store => store.event);
@@ -31,41 +32,46 @@ export default function MyEvents() {
         dispatch({ type: 'FETCH_MY_EVENT' });
       }, []);
 
+      const newEvent = () => {
+        console.log('Clicked');
+        history.push('/add-event');
+      }
+
     return (
         <div className="container">
             <h1>My Events</h1>
             <h3>Upcoming Events:</h3>
-                 <div className="container">
+            <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {going.map((event) =>
                     <EventItem key={event.event_id} event={event} />  
                     )}
-                </div>
+            </Stack>
             {ownedEvents.length>0 ? 
             <>
             <h3>Manage My Events:</h3>
-                <div className="container">
+            <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {ownedEvents.map((myEvent) =>
                     <EventItem key={myEvent.event_id} event={myEvent} />  
                     )}
-                </div>
+            </Stack>
             </>
             :
             <>
             <h3>Manage My Events:</h3>
-            <ul>
-                <li>You currently don't own any events.</li>
-                <button>Create New Event</button>
-            </ul>
+            <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
+                <Typography fontSize='20px'>You currently don't own any events.</Typography>
+                <Button sx={{ bgcolor: "#0097B2", mb: "10px" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
+            </Stack>
             </>
             }
             {pending.length>0 ? 
             <>
             <h3>Pending Events:</h3>
-                <div className="container">
+            <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {pending.map((pEvent) =>
                     <EventItem key={pEvent.event_id} event={pEvent} />  
                     )}
-                </div>
+             </Stack>
             </>
             :
             <></>
@@ -73,11 +79,11 @@ export default function MyEvents() {
             {notGoing.length>0 ? 
             <>
             <h3>Denied Events:</h3>              
-                <div className="container">
+            <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {notGoing.map((nEvent) =>
                     <EventItem key={nEvent.event_id} event={nEvent} />  
                     )}
-                </div>
+             </Stack>
             </>
             :
             <></>

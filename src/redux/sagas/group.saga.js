@@ -55,6 +55,7 @@ function* editGroup(action) {
         console.log('action payload', action.payload);
         yield axios.put(`/api/group/${action.payload.groupId}`, action.payload.details);
         yield put({ type: 'FETCH_GROUP_DETAILS', payload: action.payload.groupId });
+        yield put({ type: 'FETCH_GROUP' });
         yield put({ type: 'CLEAR_GROUP_DETAILS' });
     } catch (error) {
         console.log(`Error editing group`, error);
