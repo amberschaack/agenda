@@ -1,10 +1,6 @@
 import React, { useEffect, useState }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import Input from '@mui/joy/Input';
-import { selectClasses } from '@mui/joy/Select';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import { FormControl, FormLabel, Select, MenuItem } from '@mui/material';
 
 export default function EventForm() {
     const dispatch = useDispatch();
@@ -106,25 +102,6 @@ export default function EventForm() {
                         ))}
                 </select>
             </div>
-            {/* <Input
-                type="date"
-                id='event-date'
-                value={newEvent.event_date}
-                onChange={handleChange}
-                slotProps={{
-                input: {
-                    min: '2024-06-01',
-                    max: '2050-01-01',
-                },
-                }}
-            />
-            <Input
-                type="time"
-                id='event-time'
-                value={newEvent.event_time}
-                onChange={handleChange}
-            />
-            */}
             <button>Create New Event</button>
         </form>
             <button onClick={backToUpcoming}>Cancel</button>

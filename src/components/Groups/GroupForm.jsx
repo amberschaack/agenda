@@ -58,8 +58,14 @@ export default function GroupForm() {
         <div className='container'>
             <h1>New Group Form</h1>
             <form onSubmit={addGroup}>
-                <input id='group-name' type='text' placeholder='Group Name' value={newGroup.name} onChange={handleChange} />
-                <input id='group-description' type='text' placeholder='Group Description' value={newGroup.description} onChange={handleChange} />
+                <div className='col-12 mb-3'>
+                    <label>Group Name</label>
+                    <input id='group-name' type='text' placeholder='Group Name' className='form-control' value={newGroup.name} onChange={handleChange} />
+                </div>
+                <div className='col-12 mb-3'>
+                    <label>Group Name</label>
+                    <input id='group-description' type='text' placeholder='Group Description' className='form-control' value={newGroup.description} onChange={handleChange} />
+                </div>
                 <h2>Select Group Photo</h2>
                     { /* This just sets up the window.cloudinary widget */ }
                     {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}

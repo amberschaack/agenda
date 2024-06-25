@@ -37,7 +37,7 @@ export default function Footer() {
     <br />
     <br />
     {user.id && (
-      <Box sx={{position: "fixed", bottom: 0, margin: "auto", width: "100vw" }}>
+      <Box sx={{position: "fixed", bottom: 0, margin: "auto", width: "100vw", zIndex: 1 }}>
         <BottomNavigation
           showLabels
           value={value}

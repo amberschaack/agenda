@@ -30,16 +30,18 @@ export default function EventItem({ event }) {
 
     return (
         <>
-            <Card orientation="horizontal" variant="outlined" sx={{ width: 270 }}>
+            <Card orientation="horizontal" variant="outlined" sx={{ width: '90vw' }}>
                 <CardOverflow>
                     <AspectRatio ratio="1" sx={{ width: 90 }}>
                         <img src={event.logo} />
                     </AspectRatio>
                 </CardOverflow>
                 <CardContent>
-                    <Typography fontWeight="md">
+                <CardOverflow>
+                    <Typography fontWeight="md"  noWrap sx={{width: '175px'}} className='event-name'>
                         {event.event_name}
                     </Typography>
+                </CardOverflow>
                     <Typography level="body-sm">
                         {moment(event.event_date).format('LL')}
                     </Typography>

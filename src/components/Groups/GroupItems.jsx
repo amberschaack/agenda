@@ -34,7 +34,7 @@ export default function GroupItems({ group }) {
 
     return (
         <>
-            <Card orientation="horizontal" variant="outlined" sx={{ width: 270 }}>
+            <Card orientation="horizontal" variant="outlined" sx={{ width: '90vw' }}>
                 <CardOverflow onClick={() => groupDetails(group.id)}>
                     <AspectRatio ratio="1" sx={{ width: 90 }}>
                         <img src={group.logo} />

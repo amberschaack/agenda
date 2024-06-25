@@ -29,19 +29,31 @@ export default function EditEvent() {
         <div className='container'>
         <h1>Update {eventDetails?.event_name}</h1>
         <form onSubmit={handleSubmit}>
-            <input id='event-date' type='date' placeholder='Event Date' value={eventDetails?.event_date} 
+            <div className="col-12 mb-3">
+                <label>Event Date</label>
+                <input id='event-date' type='date' placeholder='Event Date' value={eventDetails?.event_date} className="form-control"
                 onChange={(event) => dispatch({type: 'EDIT_EVENT_DETAILS', payload: {event_date: event.target.value}})} />
-            <input id='event-time' type='time' placeholder='Event Time' value={eventDetails?.event_time} 
+            </div>
+            <div className="col-12 mb-3">
+                <label>Event Time</label>
+                <input id='event-time' type='time' placeholder='Event Time' value={eventDetails?.event_time} className="form-control"
                 onChange={(event) => dispatch({type: 'EDIT_EVENT_DETAILS', payload: {event_time: event.target.value}})} />
-            <input id='event-name' type='text' placeholder='Event Name' value={eventDetails?.event_name}
+            </div>
+            <div className="col-12 mb-3">
+                <label>Event Name</label>
+                <input id='event-name' type='text' placeholder='Event Name' value={eventDetails?.event_name} className="form-control"
                 onChange={(event) => dispatch({type: 'EDIT_EVENT_DETAILS', payload: {event_name: event.target.value}})} />
-            <br></br>
-            <input id='event-description' type='text' placeholder='Event Desc.' value={eventDetails?.description}
+            </div>
+            <div className="col-12 mb-3">
+                <label>Event Description</label>
+                <input id='event-description' type='text' placeholder='Event Desc.' value={eventDetails?.description} className="form-control"
                 onChange={(event) => dispatch({type: 'EDIT_EVENT_DETAILS', payload: {description: event.target.value}})} />
-            <br></br>
-            <input id='event-location' type='text' placeholder='Event Location' value={eventDetails?.location}
+            </div>
+            <div className="col-12 mb-3">
+                <label>Event Location</label>
+                <input id='event-location' type='text' placeholder='Event Location' value={eventDetails?.location} className="form-control"
                 onChange={(event) => dispatch({type: 'EDIT_EVENT_DETAILS', payload: {location: event.target.value}})} />
-            <br></br>
+            </div>
             <button>Update Event</button>
         </form>
             <button onClick={() => deleteEvent(eventDetails.event_id)}>Delete Event</button>

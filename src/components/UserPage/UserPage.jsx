@@ -60,7 +60,7 @@ function UserPage() {
     </Stack>
     </div>
     <div className="container">
-        {going.map((event) =>
+        {going.slice(0, 4).map((event) =>
           <EventItem key={event.event_id} event={event} />  
         )}
     </div>

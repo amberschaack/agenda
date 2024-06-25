@@ -47,7 +47,7 @@ export default function EventDetails() {
     return (
         <div className="container">
         <Grid>
-            <Card sx={{width: 325, maxWidth: '100%' }}>
+            <Card sx={{ width: '90vw' }}>
                 <Typography level="title-lg" noWrap>{eventDetails.event_name}</Typography>
                 <Typography level="body-md">Hosted By: {eventDetails.username}</Typography>
                 <CardOverflow>
