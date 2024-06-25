@@ -56,7 +56,7 @@ function UserPage() {
       <Typography variant="h4">
         Upcoming Events
       </Typography>
-      <Avatar src="/public/calendar.png" variant="square" />
+      <Avatar src="calendar.png" variant="square" />
     </Stack>
     </div>
     <div className="container">

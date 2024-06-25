@@ -32,6 +32,8 @@ import SelectGroup from '../Groups/SelectGroup';
 import EditEvent from '../Events/EditEvent';
 import EditGroup from '../Groups/EditGroup';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
   const dispatch = useDispatch();
 

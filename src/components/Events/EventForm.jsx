@@ -1,6 +1,10 @@
 import React, { useEffect, useState }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import Input from '@mui/joy/Input';
+import { selectClasses } from '@mui/joy/Select';
+import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+import { FormControl, FormLabel, Select, MenuItem } from '@mui/material';
 
 export default function EventForm() {
     const dispatch = useDispatch();
@@ -9,7 +13,7 @@ export default function EventForm() {
     const types = useSelector(store => store.eventTypes);
     const groups = useSelector(store => store.group);
     console.log(types);
-    console.log(groups);
+    console.log('groups', groups);
     const history = useHistory();
 
     useEffect(() => {
@@ -28,6 +32,8 @@ export default function EventForm() {
     }
 
     const handleChange = (event) => {
+        console.log('event id', event.target.id);
+        console.log('event value', event.target.value);
         switch (event.target.id) {
             case 'event-date':
                 setNewEvent({...newEvent, event_date: event.target.value});
@@ -58,38 +64,67 @@ export default function EventForm() {
         <div className='container'>
         <h1>New Event Form</h1>
         <form onSubmit={addEvent}>
-            <input id='event-date' type='date' placeholder='Event Date' value={newEvent.event_date} onChange={handleChange} />
-            <input id='event-time' type='time' placeholder='Event Time' value={newEvent.event_time} onChange={handleChange} />
-            <input id='event-name' type='text' placeholder='Event Name' value={newEvent.event_name} onChange={handleChange} />
-            <br></br>
-            <input id='event-description' type='text' placeholder='Event Description' value={newEvent.description} onChange={handleChange} />
-            <br></br>
-            <input id='event-location' type='text' placeholder='Event Location' value={newEvent.location} onChange={handleChange} />
-            <br></br>
-            <label htmlFor="event-type">Event Type:</label>
-                <select id="event-type" onChange={handleChange}>
-                <option selected>Select Event Type</option>
-                    {types.map((type, i) => (
-                        <option key={i}
-                            placeholder='Event Type'
-                            value={type.event_type_id}>
-                            {type.event_type}</option>
-                    ))}
+            <div className='col-12 mb-3'>
+                <label>Event Date</label>
+                <input type='date' className='form-control' id='event-date' value={newEvent.event_date} onChange={handleChange}/>
+            </div>
+            <div className='col-12 mb-3'>
+                <label>Event Time</label>
+                <input type='time' className='form-control' id='event-time' value={newEvent.event_time} onChange={handleChange}/>
+            </div>
+            <div className='col-12 mb-3'>
+                <label>Event Name</label>
+                <input type='text' className='form-control' placeholder='Event Name' id='event-name' value={newEvent.event_name} onChange={handleChange}/>
+            </div>
+            <div className='col-12 mb-3'>
+                <label>Event Description</label>
+                <input type='text' className='form-control' placeholder='Event Description' id='event-description' value={newEvent.description} onChange={handleChange}/>
+            </div>
+            <div className='col-12 mb-3'>
+                <label>Event Location</label>
+                <input type='text' className='form-control' placeholder='Event Location' id='event-location' value={newEvent.location} onChange={handleChange}/>
+            </div>
+            <div className='col-6 mb-3'>
+                <label>Event Type</label>
+                <select className='form-select' id="event-type" onChange={handleChange}>
+                <option selected>Choose Type...</option>
+                {types.map((type, i) => (
+                            <option key={i}
+                                value={type.event_type_id}>
+                                {type.event_type}</option>
+                        ))}
                 </select>
-            <br></br>
-            <br></br>
-            <label htmlFor="event-group">Select Group:</label>
-                <select id="event-group" onChange={handleChange}>
-                    <option selected>Select Group</option>
-                    {groups.map((group, i) => (
-                        <option key={i}
-                            placeholder='Event Group'
-                            value={group.id}>
-                            {group.name}</option>
-                    ))}
+            </div>
+            <div className='col-6 mb-3'>
+                <label>Event Group</label>
+                <select className='form-select' id="event-group" onChange={handleChange}>
+                <option selected>Choose Group...</option>
+                {groups.map((group, i) => (
+                            <option key={i}
+                                value={group.id}>
+                                {group.name}</option>
+                        ))}
                 </select>
-            <br></br>
-            <br></br>
+            </div>
+            {/* <Input
+                type="date"
+                id='event-date'
+                value={newEvent.event_date}
+                onChange={handleChange}
+                slotProps={{
+                input: {
+                    min: '2024-06-01',
+                    max: '2050-01-01',
+                },
+                }}
+            />
+            <Input
+                type="time"
+                id='event-time'
+                value={newEvent.event_time}
+                onChange={handleChange}
+            />
+            */}
             <button>Create New Event</button>
         </form>
             <button onClick={backToUpcoming}>Cancel</button>
