@@ -6,6 +6,18 @@ body,
   background-size: cover; */
 }
 
+.MuiButtonBase-root{
+  color: #FFFFFF;
+}
+
+.MuiBottomNavigationAction-root{
+  color: #FFFFFF;
+}
+
+.Mui-selected{
+  color: #FFFFFF;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
@@ -62,7 +74,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #FFFFFF;
   text-decoration: none;
 }
 

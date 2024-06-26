@@ -39,6 +39,7 @@ function MUINavBar() {
       history.push('/management');
     } else if (setting === 'Logout') {
       dispatch({ type: 'LOGOUT' });
+      history.push('/login');
     }
   }
 

@@ -12,6 +12,7 @@ import Button from '@mui/joy/Button';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Divider from '@mui/joy/Divider';
+import { Height } from "@mui/icons-material";
 
 export default function EventDetails() {
     const params = useParams();

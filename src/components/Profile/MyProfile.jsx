@@ -1,6 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useScript } from '../../hooks/useScript';
 import React, { useState } from 'react';
+import { Avatar, Stack, Typography } from '@mui/joy';
+import Button from '@mui/joy/Button';
+import Badge from "@mui/joy/Badge";
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 export default function MyProfile() {
    const dispatch = useDispatch();
@@ -34,15 +38,28 @@ export default function MyProfile() {
     return (
         <div className="container">
             <h1>My Profile</h1>
-            <h3>Current Profile Photo:</h3>
-               <img src={userInfo.avatar} />
-            <h3>Edit Profile Picture</h3>
+            <Stack direction="column" justifyContent="space-evenly" alignItems="center" spacing={3}>
+               <Typography>Edit Profile Picture</Typography>
+                <Badge
+                    onClick={openWidget}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="outlined"
+                    badgeContent={
+                    <CameraAltIcon
+                        sx={{ width: '35px', height: '35px', color: '#343A40' }}
+                    />
+                    }
+                    badgeInset="14%"
+                    sx={{ '--Badge-paddingX': '0px' }}
+                >
+                    <Avatar variant="outlined" sx={{ width: 150, height: 150 }} src={userInfo.avatar} />
+                </Badge>
+                    {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
+                  <Button onClick={handleSubmit} sx={{ bgcolor: "#1BAC5C" }}>Save Changes</Button>
+                </Stack> 
             { /* This just sets up the window.cloudinary widget */ }
                     {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
-
-                    Photo to upload: <button type="button" onClick={openWidget}>Select Photo</button>
                     <br />
-               <button onClick={handleSubmit}>Add New Profile Photo</button>
         </div>
     )
 }

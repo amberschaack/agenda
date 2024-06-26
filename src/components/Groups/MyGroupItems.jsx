@@ -21,6 +21,7 @@ export default function MyGroupItems({ group }) {
     const editGroup = (groupid) => {
         console.log('Clicked', groupid);
         dispatch({ type: 'FETCH_GROUP_DETAILS', payload: groupid });
+        dispatch({ type: 'FETCH_MEMBERSHIPS', payload: groupid });
         history.push(`/group/edit/${groupid}`);
     }
 
