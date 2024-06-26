@@ -114,6 +114,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.delete('/remove-member/:id', rejectUnauthenticated, (req, res) => {
+  console.log('remove member route');
   console.log('req body', req.body);
   console.log('req params', req.params);
   const queryText = `DELETE FROM "memberships"
@@ -125,7 +126,7 @@ router.delete('/remove-member/:id', rejectUnauthenticated, (req, res) => {
     .then((result) => {
     res.sendStatus(200);
 }).catch((error) => {
-    console.log('Error deleting event', error);
+    console.log('Error removing member', error);
     res.sendStatus(500);
 });
 })

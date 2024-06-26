@@ -36,7 +36,7 @@ export default function Footer() {
     {user.id && (
       <Box sx={{position: "fixed", bottom: 0, margin: "auto", width: "100vw", zIndex: 1 }}>
         <BottomNavigation
-          sx={{ bgcolor: "#1B9AAA" }}
+          sx={{ bgcolor: "#0097B2" }}
           showLabels
           value={value}
           onChange={(event, newValue) => {

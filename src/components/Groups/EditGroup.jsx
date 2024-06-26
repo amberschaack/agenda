@@ -101,7 +101,7 @@ export default function EditGroup() {
           </Badge>
           {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
         </Stack>
-        <div className='col-12 mb-4'>
+        <div className='col-12 mb-3'>
           <label>Edit Group Name</label>
           <input
             id='group-name'
@@ -156,7 +156,7 @@ export default function EditGroup() {
                 }}
             >
               {memberships.map((member) => (
-                  <GroupMembers key={member.id} member={member} />
+                  <GroupMembers key={member.id} member={member} groupId={groupDetails.id} />
               ))}
             </List>
         </Box>
