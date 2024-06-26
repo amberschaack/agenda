@@ -113,16 +113,14 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       });
 });
 
-router.delete('/remove-member/:id', rejectUnauthenticated, (req, res) => {
+router.delete('/remove-member/:group_id/:member_id', rejectUnauthenticated, (req, res) => {
   console.log('remove member route');
-  console.log('req body', req.body);
   console.log('req params', req.params);
   const queryText = `DELETE FROM "memberships"
-	                    USING "users", "groups"
-	                    WHERE "users".id=memberships.user_id
-	                    AND memberships.group_id=groups.id
-	                    AND memberships.user_id=$1 AND groups.owner=$2 AND memberships.group_id=$3;`;
-  pool.query(queryText, [req.params.id, req.user.id, req.body.group_id])
+                      USING "groups"
+                      WHERE memberships.group_id=groups.id
+                      AND memberships.id=$1 AND groups.owner=$2 AND memberships.group_id=$3;`;
+  pool.query(queryText, [req.params.member_id, req.user.id, req.params.group_id])
     .then((result) => {
     res.sendStatus(200);
 }).catch((error) => {

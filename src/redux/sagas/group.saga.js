@@ -74,7 +74,7 @@ function* deleteGroup(action) {
 function* removeMember(action) {
     try {
         console.log('action', action.payload);
-        yield axios.delete(`/api/group/remove-member/${action.payload.group}`, action.payload);
+        yield axios.delete(`/api/group/remove-member/${action.payload.group}/${action.payload.member}`);
         yield put({ type: 'FETCH_MEMBERSHIPS', payload: action.payload.group });
     } catch (error) {
         console.log(`Error removing member`, error);

@@ -35,6 +35,7 @@ export default function EditGroup() {
   const deleteGroup = (groupId) => {
     console.log('clicked', groupId);
     dispatch({ type: 'DELETE_GROUP', payload: groupId });
+    dispatch({ type: 'FETCH_MY_GROUP' });
     history.push('/my-groups');
   };
 
