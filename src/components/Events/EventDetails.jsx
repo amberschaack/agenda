@@ -6,7 +6,7 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import moment from 'moment/moment';
-import { CardOverflow, Grid } from '@mui/joy';
+import { Box, CardOverflow, Grid } from '@mui/joy';
 import { CardActions, CardContent } from "@mui/material";
 import Button from '@mui/joy/Button';
 import Avatar from '@mui/joy/Avatar';
@@ -69,7 +69,8 @@ export default function EventDetails() {
 
     return (
         <div className="container">
-        <Grid>
+        <Grid container justifyContent="center">
+            <Box sx={{ maxHeight: '80vh', overflow: 'auto'}}>
             <Card sx={{ width: '90vw' }}>
                 <Typography level="title-lg" noWrap>{eventDetails.event_name}</Typography>
                 <Typography level="body-md">Hosted By: {eventDetails.username}</Typography>
@@ -125,6 +126,7 @@ export default function EventDetails() {
                     </Button>
                 </CardActions>
             </Card>
+            </Box>
         </Grid>
         </div>
     )

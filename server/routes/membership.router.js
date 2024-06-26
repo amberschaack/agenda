@@ -61,19 +61,4 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
         });
 })
 
-// Remove a member from a group you own
-// router.delete('/remove-member/:id', rejectUnauthenticated, (req, res) => {
-//     console.log('/memberships DELETE route');
-//     console.log('req body', req.body);
-//     const queryText = `DELETE FROM memberships WHERE memberships.user_id=$1 
-//                         AND memberships.group_id=$2;`;
-//     pool.query(queryText, [req.body.id, req.params.id])
-//         .then((result) => {
-//             res.sendStatus(200);
-//         }).catch((error) => {
-//             console.log('Error removing member from group', error);
-//             res.sendStatus(500);
-//         });
-// })
-
 module.exports = router;

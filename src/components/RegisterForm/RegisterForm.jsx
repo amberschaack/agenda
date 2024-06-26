@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [number, setNumber] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -17,8 +16,7 @@ function RegisterForm() {
       type: 'REGISTER',
       payload: {
         username: username,
-        password: password,
-        phone_number: number
+        password: password
       },
     });
 
@@ -56,25 +54,6 @@ function RegisterForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-      </div>
-      <div>
-        <label htmlFor="number">
-          Phone Number:
-          <input
-            type="text"
-            name="number"
-            placeholder='Format: 1112223333'
-            value={number}
-            required
-            onChange={(event) => setNumber(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input 
-          type='checkbox'
-          name='notifications'  
-        />
       </div>
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />

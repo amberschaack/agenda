@@ -45,16 +45,17 @@ export default function GroupDetails() {
 
     return (
         <div className="container">
-        <Grid>
-            <Card sx={{ width: '90vw'}}>
-                <Typography level='title-lg' noWrap>{groupDetails.name}</Typography>
-                <Typography level='body-md'>Moderated By: {groupDetails.owner}</Typography>
+        <Grid container justifyContent="center">
+            <Card sx={{ width: '90vw' }}>
                 <CardOverflow>
                     <AspectRatio sx={{ midWidth: '50vw'}}>
                         <img src={groupDetails.logo} />
                     </AspectRatio>
                 </CardOverflow>
                 <CardContent>
+                    <Typography level='h2' noWrap>{groupDetails.name}</Typography>
+                    <Typography level='body-md' fontWeight='bold'>Moderator:</Typography>
+                    <Typography level='body-md'>{groupDetails.owner}</Typography>
                     <Typography level='body-md' fontWeight='bold'>Group Description:</Typography>
                     <Typography level='body-md' sx={{ mb: '10px' }}>{groupDetails.description}</Typography>
                     <Typography level='body-md' fontWeight='bold' sx={{ mb: '10px' }}>Group Members:</Typography>

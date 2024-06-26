@@ -17,13 +17,13 @@
 
 ## PAGES
 [X] Home // Populates user's upcoming events
-[] My Events
-[] My Groups
-    [] Populate available groups
-[] My Profile
+[X] My Events
+[X] My Groups
+    [X] Populate available groups
+[X] My Profile
 [] About
 [X] Event Details
-[] Group Details
+[X] Group Details
 
 ## UPLOADS
 [X] Incorporate Cloudinary on image uploads

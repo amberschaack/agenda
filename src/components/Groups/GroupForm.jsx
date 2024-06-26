@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useScript } from '../../hooks/useScript';
+import { Avatar, Badge, Button, Stack, Typography } from '@mui/joy';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 export default function GroupForm() {
     const dispatch = useDispatch();
@@ -15,6 +17,7 @@ export default function GroupForm() {
     const addGroup = (event) => {
         event.preventDefault();
         dispatch({ type: 'ADD_GROUP', payload: newGroup });
+        history.push('/my-groups');
         setNewGroup({name: '', description: '', logo: ''});
     }
 
@@ -56,8 +59,16 @@ export default function GroupForm() {
     return (
         <>
         <div className='container'>
-            <h1>New Group Form</h1>
             <form onSubmit={addGroup}>
+                <Stack
+                    direction='row'
+                    justifyContent='space-between'
+                    sx={{ mb: '10px' }}
+                    >
+                    <Button onClick={backToUpcoming} sx={{ bgcolor: '#ADB5BD' }}>Cancel</Button>
+                    <Button sx={{ bgcolor: '#1BAC5C' }} type="submit">Create New Group</Button>
+                </Stack>
+                <h1>New Group Form</h1>
                 <div className='col-12 mb-3'>
                     <label>Group Name</label>
                     <input id='group-name' type='text' placeholder='Group Name' className='form-control' value={newGroup.name} onChange={handleChange} />
@@ -66,15 +77,26 @@ export default function GroupForm() {
                     <label>Group Name</label>
                     <input id='group-description' type='text' placeholder='Group Description' className='form-control' value={newGroup.description} onChange={handleChange} />
                 </div>
-                <h2>Select Group Photo</h2>
                     { /* This just sets up the window.cloudinary widget */ }
                     {useScript('https://widget.cloudinary.com/v2.0/global/all.js')}
-
-                    Photo to upload: <button type="button" onClick={openWidget}>Pick Photo</button>
-                    <br />
-                <button>Create New Group</button>
+                <Stack direction="column" justifyContent="space-evenly" alignItems="center" spacing={3}>
+               <Typography>Select Group Picture</Typography>
+                <Badge
+                    onClick={openWidget}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    variant="outlined"
+                    badgeContent={
+                    <CameraAltIcon
+                        sx={{ width: '35px', height: '35px', color: '#343A40' }}
+                    />
+                    }
+                    badgeInset="14%"
+                    sx={{ '--Badge-paddingX': '0px' }}
+                >
+                    <Avatar variant="outlined" sx={{ width: 150, height: 150 }} />
+                </Badge>
+                </Stack>
             </form>
-                <button onClick={backToUpcoming}>Cancel</button>
         </div>
         </>
     )

@@ -1,3 +1,4 @@
+import { Button, Stack } from '@mui/joy';
 import React, { useEffect, useState }from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -24,6 +25,7 @@ export default function EventForm() {
     const addEvent = (event) => {
         event.preventDefault();
         dispatch({ type: 'ADD_EVENT', payload: newEvent });
+        history.push('my-events');
         setNewEvent({event_date: '', event_time: '', event_name: '', description: '', location: '', event_type_id: '', group_id: ''});
     }
 
@@ -102,9 +104,15 @@ export default function EventForm() {
                         ))}
                 </select>
             </div>
-            <button>Create New Event</button>
+            <Stack
+                direction='row'
+                justifyContent='space-between'
+                sx={{ mb: '10px' }}
+            >
+            <Button onClick={backToUpcoming} sx={{ bgcolor: '#ADB5BD' }}>Cancel</Button>
+            <Button sx={{ bgcolor: '#1BAC5C' }} type="submit">Create New Event</Button>
+            </Stack>
         </form>
-            <button onClick={backToUpcoming}>Cancel</button>
         </div>
         </>
     )

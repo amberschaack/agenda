@@ -24,6 +24,7 @@ export default function GroupItems({ group }) {
 
     const unjoinGroup = (groupId) => {
         dispatch({ type: 'UNJOIN_GROUP', payload: groupId});
+        dispatch({ type: 'FETCH_GROUP' });
         setJoined(!joined);
     }
 
