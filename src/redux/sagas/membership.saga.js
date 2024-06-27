@@ -23,6 +23,7 @@ function* joinGroup(action) {
 function* unjoinGroup(action) {
     try {
         yield axios.delete(`/api/membership/${action.payload}`);
+        yield put({ type: 'FETCH_MEMBERSHIPS' });
     } catch (error) {
         console.log(`Error unjoining group`, error);
     }

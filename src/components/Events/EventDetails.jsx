@@ -7,7 +7,7 @@ import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import moment from 'moment/moment';
 import { Box, CardOverflow, Grid } from '@mui/joy';
-import { CardActions, CardContent } from "@mui/material";
+import { CardActions, CardContent, Stack } from "@mui/material";
 import Button from '@mui/joy/Button';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
@@ -111,6 +111,7 @@ export default function EventDetails() {
                     </AvatarGroup>
                 </CardContent>
                 <CardActions>
+                    <Stack direction='row' justifyContent='space-between' spacing={2}>
                     {going ? 
                         <Button variant="solid" sx={{ bgcolor: "#0097B2" }} onClick={() => removeRSVP('2')}>
                             Remove RSVP
@@ -124,6 +125,7 @@ export default function EventDetails() {
                     <Button variant="solid" sx={{ bgcolor: "#0097B2" }} onClick={backToUpcoming}>
                         Back to Upcoming
                     </Button>
+                    </Stack>
                 </CardActions>
             </Card>
             </Box>

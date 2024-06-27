@@ -82,9 +82,10 @@ export default function GroupItems({ group }) {
                 textTransform: 'uppercase',
                 borderLeft: '1px solid',
                 borderColor: 'divider',
+                bgcolor: '#A5D0A8'
                 }}
             >
-                Unjoin
+                Leave
             </CardOverflow>
                 }
             </Card>

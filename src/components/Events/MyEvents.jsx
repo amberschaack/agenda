@@ -29,7 +29,7 @@ export default function MyEvents() {
     const going = events.filter(event => event.rsvp_status === 1);
     const notGoing = events.filter(event => event.rsvp_status === 2);
 
-    const eventsPerPage = 2;
+    const eventsPerPage = 3;
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentEvents = going.slice(currentIndex, currentIndex + eventsPerPage);
 
@@ -53,7 +53,7 @@ export default function MyEvents() {
         }
       }
 
-      const myEventsPerPage = 2;
+      const myEventsPerPage = 3;
       const [myCurrentIndex, setMyCurrentIndex] = useState(0);
       const myCurrentEvents = ownedEvents.slice(myCurrentIndex, myCurrentIndex + myEventsPerPage);
   
@@ -138,16 +138,16 @@ export default function MyEvents() {
 
     return (
         <div className='container'>
-            <header>
+            <center>
                 <h1>My Events</h1>
-            </header>
+            </center>
             <h3>Upcoming Events:</h3>
             <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {currentEvents.map((event) =>
                     <EventItem key={event.event_id} event={event} />  
                     )}
             </Stack>
-            {currentEvents.length > eventsPerPage ? 
+            {/* {currentEvents.length > eventsPerPage ?  */}
                 <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
                     <IconButton onClick={previousEvents}>
                         <ArrowBackIosNewIcon />
@@ -156,9 +156,7 @@ export default function MyEvents() {
                         <ArrowForwardIosIcon />
                     </IconButton>
                 </Stack>
-                :
-                <></>
-            }
+
             {ownedEvents.length>0 ? 
             <>
             <h3>Manage My Events:</h3>
@@ -167,7 +165,7 @@ export default function MyEvents() {
                     <EventItem key={myEvent.event_id} event={myEvent} />  
                     )}
             </Stack>
-                    {myCurrentEvents.length > myEventsPerPage ? 
+                    {/* {myCurrentEvents.length > myEventsPerPage ?  */}
                         <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
                             <IconButton onClick={myPreviousEvents}>
                                 <ArrowBackIosNewIcon />
@@ -176,9 +174,7 @@ export default function MyEvents() {
                                 <ArrowForwardIosIcon />
                             </IconButton>
                         </Stack>
-                        :
-                        <></>
-                    }
+
             </>
             :
             <>
@@ -197,7 +193,7 @@ export default function MyEvents() {
                     <EventItem key={pEvent.event_id} event={pEvent} />  
                     )}
              </Stack>
-                    {pendEvents.length > pendPerPage ? 
+                    {/* {pendEvents.length > pendPerPage ?  */}
                         <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
                             <IconButton onClick={prevPendEvents}>
                                 <ArrowBackIosNewIcon />
@@ -206,9 +202,6 @@ export default function MyEvents() {
                                 <ArrowForwardIosIcon />
                             </IconButton>
                         </Stack>
-                        :
-                        <></>
-                    }
             </>
             :
             <></>
@@ -221,7 +214,7 @@ export default function MyEvents() {
                     <EventItem key={nEvent.event_id} event={nEvent} />  
                     )}
              </Stack>
-                    {notEvents.length > notPerPage ? 
+                    {/* {notEvents.length > notPerPage ?  */}
                         <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
                             <IconButton onClick={prevNotEvents}>
                                 <ArrowBackIosNewIcon />
@@ -230,9 +223,6 @@ export default function MyEvents() {
                                 <ArrowForwardIosIcon />
                             </IconButton>
                         </Stack>
-                        :
-                        <></>
-                    }
             </>
             :
             <></>

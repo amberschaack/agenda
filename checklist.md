@@ -39,6 +39,6 @@
 [X] Use Moment to get dates to show up better
 [] Completed Event management
     --Archive
-[] Join/Unjoin Tickets after creating event
-[] FETCH after joins
-[] CSS on Select Group cards
+[X] Join/Unjoin Tickets after creating event
+[X] FETCH after joins
+[X] CSS on Select Group cards

@@ -117,7 +117,7 @@ function UserPage() {
           <EventItem key={event.event_id} event={event} />  
         )}
       </Stack>
-        {currentEvents.length > eventsPerPage ? 
+        {/* {currentEvents.length > eventsPerPage ?  */}
           <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
           <IconButton onClick={previousEvents}>
             <ArrowBackIosNewIcon />
@@ -126,9 +126,6 @@ function UserPage() {
             <ArrowForwardIosIcon />
           </IconButton>
           </Stack>
-          :
-          <></>
-        }
       </div>
       <div>
       {nonGroup.length>0 ? 
@@ -144,7 +141,7 @@ function UserPage() {
         <GroupItems key={group.id} group={group}/>
       ))}
       </Stack>
-        {currentGroups.length > groupsPerPage ? 
+        {/* {currentGroups.length > groupsPerPage ?  */}
           <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
           <IconButton onClick={previousGroups}>
             <ArrowBackIosNewIcon />
@@ -153,9 +150,6 @@ function UserPage() {
             <ArrowForwardIosIcon />
           </IconButton>
           </Stack>
-          :
-          <></>
-        }
       </>
       :
       <></>

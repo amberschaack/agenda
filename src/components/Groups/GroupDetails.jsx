@@ -8,7 +8,7 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Card from '@mui/joy/Card';
 import Typography from '@mui/joy/Typography';
 import { CardOverflow, Grid } from '@mui/joy';
-import { CardActions, CardContent } from "@mui/material";
+import { CardActions, CardContent, Stack } from "@mui/material";
 import Button from '@mui/joy/Button';
 
 export default function GroupDetails() {
@@ -43,6 +43,10 @@ export default function GroupDetails() {
         total: memberships.total,
       });
 
+      const backToGroups = () => {
+        history.push('/my-groups');
+      }
+
     return (
         <div className="container">
         <Grid container justifyContent="center">
@@ -68,6 +72,9 @@ export default function GroupDetails() {
                         {!!surplus && <Avatar>+{surplus}</Avatar>}
                     </AvatarGroup>
                     </CardContent>
+                    <Stack justifyItems='center' sx={{mt: '20px'}}> 
+                        <Button variant="solid" sx={{ bgcolor: "#0097B2" }} onClick={backToGroups}>Back to Groups</Button>
+                    </Stack>
                     </Card>
                 </Grid>
         </div>
