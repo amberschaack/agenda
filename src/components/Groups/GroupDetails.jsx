@@ -25,8 +25,8 @@ export default function GroupDetails() {
         dispatch({ type: 'FETCH_MEMBERSHIPS', payload: params.id });
     }, []);
 
-    function clampAvatars(memberships, options = { max: 6 }) {
-        const { max = 6, total } = options;
+    function clampAvatars(memberships, options = { max: 7 }) {
+        const { max = 7, total } = options;
         let clampedMax = max < 2 ? 2 : max;
         const totalAvatars = total || memberships.length;
         if (totalAvatars === clampedMax) {
@@ -39,7 +39,7 @@ export default function GroupDetails() {
       }
 
       const { avatars, surplus } = clampAvatars(memberships, {
-        max: 6,
+        max: 7,
         total: memberships.total,
       });
 
