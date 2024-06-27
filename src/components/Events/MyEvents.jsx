@@ -137,7 +137,7 @@ export default function MyEvents() {
       }
 
     return (
-        <div className="container">
+        <div className='container'>
             <header>
                 <h1>My Events</h1>
             </header>

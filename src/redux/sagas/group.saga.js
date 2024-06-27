@@ -45,6 +45,7 @@ function* addGroup(action) {
     try {
         yield axios.post('/api/group', action.payload);
         yield put({ type: 'FETCH_GROUP' });
+        yield put({ type: 'FETCH_USER' });
     } catch (error) {
         console.log(`Error getting groups`, error);
     }
@@ -66,6 +67,7 @@ function* deleteGroup(action) {
     try {
         console.log('action payload', action.payload);
         yield axios.delete(`/api/group/${action.payload}`);
+        yield put({ type: 'FETCH_GROUP' });
     } catch (error) {
         console.log(`Error deleting group`, error);
     }
