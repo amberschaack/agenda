@@ -147,14 +147,18 @@ export default function MyEvents() {
                     <EventItem key={event.event_id} event={event} />  
                     )}
             </Stack>
-            <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
-                <IconButton onClick={previousEvents}>
-                    <ArrowBackIosNewIcon />
-                </IconButton>
-                <IconButton onClick={nextEvents}>
-                    <ArrowForwardIosIcon />
-                </IconButton>
-            </Stack>
+            {currentEvents.length > eventsPerPage ? 
+                <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
+                    <IconButton onClick={previousEvents}>
+                        <ArrowBackIosNewIcon />
+                    </IconButton>
+                    <IconButton onClick={nextEvents}>
+                        <ArrowForwardIosIcon />
+                    </IconButton>
+                </Stack>
+                :
+                <></>
+            }
             {ownedEvents.length>0 ? 
             <>
             <h3>Manage My Events:</h3>
@@ -163,14 +167,18 @@ export default function MyEvents() {
                     <EventItem key={myEvent.event_id} event={myEvent} />  
                     )}
             </Stack>
-            <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
-                <IconButton onClick={myPreviousEvents}>
-                    <ArrowBackIosNewIcon />
-                </IconButton>
-                <IconButton onClick={myNextEvents}>
-                    <ArrowForwardIosIcon />
-                </IconButton>
-            </Stack>
+                    {myCurrentEvents.length > myEventsPerPage ? 
+                        <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
+                            <IconButton onClick={myPreviousEvents}>
+                                <ArrowBackIosNewIcon />
+                            </IconButton>
+                            <IconButton onClick={myNextEvents}>
+                                <ArrowForwardIosIcon />
+                            </IconButton>
+                        </Stack>
+                        :
+                        <></>
+                    }
             </>
             :
             <>
@@ -189,14 +197,18 @@ export default function MyEvents() {
                     <EventItem key={pEvent.event_id} event={pEvent} />  
                     )}
              </Stack>
-             <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
-                <IconButton onClick={prevPendEvents}>
-                    <ArrowBackIosNewIcon />
-                </IconButton>
-                <IconButton onClick={nextPendEvents}>
-                    <ArrowForwardIosIcon />
-                </IconButton>
-            </Stack>
+                    {pendEvents.length > pendPerPage ? 
+                        <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
+                            <IconButton onClick={prevPendEvents}>
+                                <ArrowBackIosNewIcon />
+                            </IconButton>
+                            <IconButton onClick={nextPendEvents}>
+                                <ArrowForwardIosIcon />
+                            </IconButton>
+                        </Stack>
+                        :
+                        <></>
+                    }
             </>
             :
             <></>
@@ -209,14 +221,18 @@ export default function MyEvents() {
                     <EventItem key={nEvent.event_id} event={nEvent} />  
                     )}
              </Stack>
-             <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
-                <IconButton onClick={prevNotEvents}>
-                    <ArrowBackIosNewIcon />
-                </IconButton>
-                <IconButton onClick={nextNotEvents}>
-                    <ArrowForwardIosIcon />
-                </IconButton>
-            </Stack>
+                    {notEvents.length > notPerPage ? 
+                        <Stack direction='row' justifyContent='space-between' sx={{ margin: '6px'}}>
+                            <IconButton onClick={prevNotEvents}>
+                                <ArrowBackIosNewIcon />
+                            </IconButton>
+                            <IconButton onClick={nextNotEvents}>
+                                <ArrowForwardIosIcon />
+                            </IconButton>
+                        </Stack>
+                        :
+                        <></>
+                    }
             </>
             :
             <></>

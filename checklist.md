@@ -40,3 +40,5 @@
 [] Completed Event management
     --Archive
 [] Join/Unjoin Tickets after creating event
+[] FETCH after joins
+[] CSS on Select Group cards
