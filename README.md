@@ -65,7 +65,7 @@ Before you get started, make sure you have the following software installed on y
 
 ## Acknowledgement
 
-Thanks to Emerging Digital Academy who equipped and helped me to make this application a reality. It will be something that I implement in my small business and I hope to keep developing to make a customer-facing application as well. Also, a huge thanks to my cohort mates, we all leaned on each other and helped each other through these projects and I'm grateful to have gone through this process with you.
+Thanks to Emerging Digital Academy who equipped and helped me to make this application a reality. It will be something that I can implement in my social life and I hope to keep developing to grow this application and create even more. Also, a huge thanks to my cohort mates, we all leaned on each other and helped each other through these projects and I'm grateful to have gone through this process with you.
 
 ## Support
 If you have suggestions or issues, please email me at aschaack9@gmail.com
