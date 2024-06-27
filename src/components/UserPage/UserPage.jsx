@@ -29,7 +29,7 @@ function UserPage() {
   const nonGroup = groups.filter(group => !user.memberships.includes(group.id));
   console.log('Non groups', nonGroup);
 
-  const eventsPerPage = 2;
+  const eventsPerPage = 3;
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentEvents = going.slice(currentIndex, currentIndex + eventsPerPage);
 
@@ -99,7 +99,7 @@ function UserPage() {
   return (
     <>
     <div className="container">
-    <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
+    <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1}>
       <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />
       <Typography variant="h4">Welcome, {user.username}!</Typography>
     </Stack>

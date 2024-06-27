@@ -11,6 +11,7 @@ import Button from '@mui/joy/Button';
 import {IconButton} from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 export default function MyGroups() {
     const groups = useSelector(store => store.group);
@@ -83,7 +84,10 @@ export default function MyGroups() {
             <center>
                 <h1>My Groups</h1>
             </center>
-        <h3>Joined Groups</h3>
+            <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{mb: '5px'}}>
+             <h3>Joined Groups</h3>
+             <GroupAddIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newGroup}/>
+            </Stack>
         <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                 {currentGroups.map((group) => (
                     <GroupItems key={group.id} group={group} />

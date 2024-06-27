@@ -15,6 +15,7 @@ import Add from '@mui/icons-material/Add';
 import {IconButton} from '@mui/material';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 
 export default function MyEvents() {
     const events = useSelector(store => store.event);
@@ -141,7 +142,10 @@ export default function MyEvents() {
             <center>
                 <h1>My Events</h1>
             </center>
-            <h3>Upcoming Events:</h3>
+            <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{mb: '5px'}}>
+             <h3>Upcoming Events</h3>
+             <EditCalendarIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newEvent}/>
+            </Stack>
             <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {currentEvents.map((event) =>
                     <EventItem key={event.event_id} event={event} />  
@@ -159,7 +163,7 @@ export default function MyEvents() {
 
             {ownedEvents.length>0 ? 
             <>
-            <h3>Manage My Events:</h3>
+            <h3>Manage My Events</h3>
             <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {myCurrentEvents.map((myEvent) =>
                     <EventItem key={myEvent.event_id} event={myEvent} />  
