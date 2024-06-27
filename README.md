@@ -32,4 +32,4 @@ Before you get started, make sure you have the following software installed on y
 - Navigate to localhost:5001
 
 ## Project Wireframes
-<img src='/Users/amberschaack/Documents/EDA/tier3/agenda-solo-project/agenda/docs/Login.png'>
+<img src='/docs/Login.png'>
