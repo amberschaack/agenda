@@ -50,7 +50,8 @@ router.get('/my-event', rejectUnauthenticated, (req, res) => {
                         events.group_id, events.location, "users".username, "users".avatar, groups.logo 
                         FROM events JOIN "users" ON "users".id=events.event_admin
                         JOIN "groups" ON groups.id=events.group_id
-                        WHERE events.event_admin=$1;`;
+                        WHERE events.event_admin=$1
+                        ORDER BY events.event_date;`;
     pool.query(queryText, [req.user.id])
         .then((result) => {
             console.log(result.rows);

@@ -17,6 +17,8 @@ export default function GroupForm() {
     const addGroup = (event) => {
         event.preventDefault();
         dispatch({ type: 'ADD_GROUP', payload: newGroup });
+        dispatch({ type: 'FETCH_GROUP' });
+        dispatch({ type: 'FETCH_MY_GROUP' });
         history.push('/my-groups');
         setNewGroup({name: '', description: '', logo: ''});
     }

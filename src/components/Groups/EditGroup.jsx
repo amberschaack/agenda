@@ -25,6 +25,8 @@ export default function EditGroup() {
       type: 'EDIT_GROUP',
       payload: { groupId: groupDetails.id, details: groupDetails },
     });
+    dispatch({ type: 'FETCH_GROUP' });
+    dispatch({ type: 'FETCH_MY_GROUP' });
     history.push('/my-groups');
   };
 
@@ -35,6 +37,7 @@ export default function EditGroup() {
   const deleteGroup = (groupId) => {
     console.log('clicked', groupId);
     dispatch({ type: 'DELETE_GROUP', payload: groupId });
+    dispatch({ type: 'FETCH_GROUP' });
     dispatch({ type: 'FETCH_MY_GROUP' });
     history.push('/my-groups');
   };

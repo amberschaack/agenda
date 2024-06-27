@@ -14,7 +14,7 @@ export default function GroupItems({ group }) {
     console.log('user', user);
     // console.log('array includes', user.memberships.includes(group.id));
 
-    const [joined, setJoined] = useState(false);
+    const [joined, setJoined] = useState('');
 
     const joinGroup = (groupId) => {
         console.log('Clicked', groupId);

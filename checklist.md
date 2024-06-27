@@ -39,5 +39,4 @@
 [X] Use Moment to get dates to show up better
 [] Completed Event management
     --Archive
-[] Update Edit Event buttons
 [] Join/Unjoin Tickets after creating event

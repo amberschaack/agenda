@@ -14,7 +14,6 @@ export default function MyGroups() {
     const myGroups = useSelector(store => store.myGroup);
     console.log('groups', groups);
     console.log('my groups', myGroups);
-    const user = useSelector(store => store.user);
     const dispatch = useDispatch();
     const history = useHistory();
 
