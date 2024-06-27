@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 // const pages = ['Home', 'Events', 'Groups'];
-const settings = ['Profile', 'Manage', 'Logout'];
+const settings = ['Profile', 'Logout'];
 const loggedOut = ['Login', 'Register', 'About Us'];
 
 function MUINavBar() {

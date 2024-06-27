@@ -1,3 +1,4 @@
+import { Button, Stack, Typography } from '@mui/joy';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -24,17 +25,23 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
+    <div className='container'>
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+    <Stack direction='column' alignItems='center'>
+      <img src='public/AgendaBanner.png' />
+    </Stack>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
+      <Stack direction='column' spacing={1} alignItems='center'>
+        <Typography level='h3'>REGISTRATION</Typography>
       <div>
         <label htmlFor="username">
-          Username:
+          Username
           <input
+            className='form-control'
             type="text"
             name="username"
             value={username}
@@ -45,8 +52,9 @@ function RegisterForm() {
       </div>
       <div>
         <label htmlFor="password">
-          Password:
+          Password
           <input
+            className='form-control'
             type="password"
             name="password"
             value={password}
@@ -56,9 +64,11 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
+        <Button className="btn" type="submit" name="submit" value="Register" sx={{mt: '10px', bgcolor: "#0097B2"}}>REGISTER</Button>
       </div>
+      </Stack>
     </form>
+    </div>
   );
 }
 

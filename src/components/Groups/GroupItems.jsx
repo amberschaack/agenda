@@ -19,12 +19,14 @@ export default function GroupItems({ group }) {
     const joinGroup = (groupId) => {
         console.log('Clicked', groupId);
         dispatch({ type: 'JOIN_GROUP', payload: groupId });
+        dispatch({ type: 'FETCH_USER' });
         setJoined(!joined);
     }
 
     const unjoinGroup = (groupId) => {
         dispatch({ type: 'UNJOIN_GROUP', payload: groupId});
         dispatch({ type: 'FETCH_GROUP' });
+        dispatch({ type: 'FETCH_USER' });
         setJoined(!joined);
     }
 

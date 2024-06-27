@@ -1,3 +1,4 @@
+import { Button, Stack, Typography } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -27,8 +28,18 @@ export default function EditEvent() {
     return (
         <>
         <div className='container'>
-        <h1>Update {eventDetails?.event_name}</h1>
         <form onSubmit={handleSubmit}>
+        <Stack
+          direction='row'
+          justifyContent='space-between'
+          sx={{ mb: '10px' }}
+        >
+            <Button sx={{ bgcolor: '#ADB5BD' }} onClick={backToMyEvents}>Cancel</Button>
+            <Button type='submit' sx={{ bgcolor: '#1BAC5C' }}>Save</Button>
+        </Stack>
+        <Stack alignItems='center'>
+            <Typography level='h3' sx={{mb: '10px'}}> Edit {eventDetails?.event_name}</Typography>
+        </Stack>
             <div className="col-12 mb-3">
                 <label>Event Date</label>
                 <input id='event-date' type='date' placeholder='Event Date' value={eventDetails?.event_date} className="form-control"
@@ -54,10 +65,15 @@ export default function EditEvent() {
                 <input id='event-location' type='text' placeholder='Event Location' value={eventDetails?.location} className="form-control"
                 onChange={(event) => dispatch({type: 'EDIT_EVENT_DETAILS', payload: {location: event.target.value}})} />
             </div>
-            <button>Update Event</button>
         </form>
-            <button onClick={() => deleteEvent(eventDetails.event_id)}>Delete Event</button>
-            <button onClick={backToMyEvents}>Cancel</button>
+        <Stack direction='row' justifyContent='space-evenly' alignItems='center'>
+            <Button
+            sx={{ bgcolor: '#AC2C1B', mt: '20px' }}
+            onClick={() => deleteEvent(eventDetails.event_id)}
+            >
+            Delete Event
+            </Button>
+        </Stack>
         </div>
         </>
     )

@@ -1,3 +1,4 @@
+import { Button, Stack, Typography } from '@mui/joy';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
@@ -25,17 +26,23 @@ function LoginForm() {
   }; // end login
 
   return (
-    <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+    <div className='container'>
+    <form onSubmit={login} className='formPanel'>
+    <Stack direction='column' alignItems='center' spacing={1}>
+      <img src='public/AgendaBanner.png' />
+    </Stack>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
+      <Stack direction='column' spacing={1} alignItems='center'>
+        <Typography level='h3'>LOGIN</Typography>
       <div>
         <label htmlFor="username">
-          Username:
+          Username
           <input
+            className='form-control'
             type="text"
             name="username"
             required
@@ -46,8 +53,9 @@ function LoginForm() {
       </div>
       <div>
         <label htmlFor="password">
-          Password:
+          Password
           <input
+            className='form-control'
             type="password"
             name="password"
             required
@@ -57,9 +65,12 @@ function LoginForm() {
         </label>
       </div>
       <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+        <Button className="btn" type="submit" name="submit" value="Log In" sx={{mt: '10px', bgcolor: "#0097B2"}}>LOGIN</Button>
+        {/* <input className="btn" type="submit" name="submit" value="Log In" /> */}
       </div>
+      </Stack>
     </form>
+    </div>
   );
 }
 

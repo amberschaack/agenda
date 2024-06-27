@@ -8,12 +8,10 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import { Typography } from '@mui/material';
 import EventItem from '../Events/EventItem';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Add from '@mui/icons-material/Add';
 import GroupItems from '../Groups/GroupItems';
 import { Divider } from '@mui/joy';
-
+import GroupAddIcon from '@mui/icons-material/GroupAdd';
+import EditCalendarIcon from '@mui/icons-material/EditCalendar';
 
 function UserPage() {
   const user = useSelector((store) => store.user);
@@ -53,29 +51,34 @@ function UserPage() {
     </Stack>
     <Divider inset="none" />
     </div>
-    <Stack direction="row" spacing={1} sx={{ padding: "10px" }} justifyContent="center" alignItems="center">
-      <Typography variant="h4">
+    <Stack direction="row" spacing={1} sx={{ padding: "10px" }} justifyContent="space-around" alignItems="center">
+      <Typography fontSize='30px'>
         Upcoming Events
       </Typography>
-      <Avatar src="calendar.png" variant="square" />
+      <EditCalendarIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newEvent}/>
     </Stack>
       <Stack direction="column" spacing={1} justifyContent="space-around" alignItems="center" >
         {going.slice(0, 4).map((event) =>
           <EventItem key={event.event_id} event={event} />  
         )}
-      <Button sx={{ bgcolor: "#0097B2", mb: "10px" }} startDecorator={<Add />} onClick={newEvent} >Create New Event</Button>
       </Stack>
-    <Stack direction="row" spacing={2} sx={{ padding: "20px" }} justifyContent="center" alignItems="center">
-      <Typography variant="h4">
+      {nonGroup.length>0 ? 
+      <>
+      <Stack direction="row" spacing={2} sx={{ padding: "20px" }} justifyContent="space-around" alignItems="center">
+      <Typography fontSize='30px'>
         Explore New Groups
       </Typography>
+      <GroupAddIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newGroup}/>
       </Stack>
       <Stack direction="column" spacing={1} justifyContent="space-around" alignItems="center" >
       {nonGroup.map((group) => (
-        <GroupItems key={group.id} group={group} />
+        <GroupItems key={group.id} group={group}/>
       ))}
-        <Button sx={{ bgcolor: "#0097B2" }} startDecorator={<Add />} onClick={newGroup} >Create New Group</Button>
       </Stack>
+      </>
+      :
+      <></>
+      }
     </>
   );
 }
