@@ -87,7 +87,7 @@ export default function MyGroups() {
             </center>
             <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{mb: '5px'}}>
              <h3>Joined Groups</h3>
-             <GroupAddIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newGroup}/>
+             <GroupAddIcon sx={{fontSize: '40px', color: "#0097B2", cursor: 'pointer'}} onClick={newGroup}/>
             </Stack>
         <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                 {currentGroups.map((group) => (

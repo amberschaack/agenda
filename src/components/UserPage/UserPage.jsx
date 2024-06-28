@@ -42,7 +42,7 @@ function UserPage() {
     dispatch({ type: 'FETCH_ALL_GROUPS' });
     window.scrollTo(0, 0);
   }, []);
-  
+
   const nextEvents = () => {
     if (currentIndex + eventsPerPage >= going.length) {
       setCurrentIndex(0);
@@ -112,7 +112,7 @@ function UserPage() {
       <Typography fontSize='30px'>
         Upcoming Events
       </Typography>
-      <EditCalendarIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newEvent}/>
+      <EditCalendarIcon sx={{fontSize: '40px', color: "#0097B2", cursor: 'pointer'}} onClick={newEvent}/>
     </Stack>
       <Stack direction="column" spacing={1} justifyContent="space-around" alignItems="center" >
         {currentEvents.map((event) =>
@@ -136,7 +136,7 @@ function UserPage() {
       <Typography fontSize='30px'>
         Explore New Groups
       </Typography>
-      <GroupAddIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newGroup}/>
+      <GroupAddIcon sx={{fontSize: '40px', color: "#0097B2", cursor: 'pointer'}} onClick={newGroup} />
       </Stack>
       <Stack direction="column" spacing={1} justifyContent="space-around" alignItems="center" >
       {currentGroups.map((group) => (

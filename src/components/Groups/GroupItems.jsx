@@ -38,7 +38,7 @@ export default function GroupItems({ group }) {
     return (
         <>
             <Card orientation="horizontal" variant="outlined" sx={{ width: '90vw' }}>
-                <CardOverflow onClick={() => groupDetails(group.id)}>
+                <CardOverflow onClick={() => groupDetails(group.id)} sx={{cursor: 'pointer'}}>
                     <AspectRatio ratio="1" sx={{ width: 90 }}>
                         <img src={group.logo} />
                     </AspectRatio>
@@ -63,6 +63,7 @@ export default function GroupItems({ group }) {
                     textTransform: 'uppercase',
                     borderLeft: '1px solid',
                     borderColor: 'divider',
+                    cursor: 'pointer'
                     }}
                 >
                     Join
@@ -82,7 +83,8 @@ export default function GroupItems({ group }) {
                 textTransform: 'uppercase',
                 borderLeft: '1px solid',
                 borderColor: 'divider',
-                bgcolor: '#A5D0A8'
+                bgcolor: '#A5D0A8',
+                cursor: 'pointer'
                 }}
             >
                 Leave

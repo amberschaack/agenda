@@ -61,6 +61,7 @@ export default function EventItem({ event }) {
                     textTransform: 'uppercase',
                     borderLeft: '1px solid',
                     borderColor: 'divider',
+                    cursor: 'pointer'
                     }}
                 >
                     EDIT
@@ -80,6 +81,7 @@ export default function EventItem({ event }) {
                     textTransform: 'uppercase',
                     borderLeft: '1px solid',
                     borderColor: 'divider',
+                    cursor: 'pointer'
                     }}
                 >
                     VIEW

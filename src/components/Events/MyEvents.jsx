@@ -35,7 +35,7 @@ export default function MyEvents() {
         dispatch({ type: 'FETCH_MY_EVENT' });
         window.scrollTo(0, 0);
       }, []);
-      
+
     const eventsPerPage = 3;
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentEvents = going.slice(currentIndex, currentIndex + eventsPerPage);
@@ -146,7 +146,7 @@ export default function MyEvents() {
             </center>
             <Stack direction='row' justifyContent='space-between' alignItems='center' sx={{mb: '5px'}}>
              <h3>Upcoming Events</h3>
-             <EditCalendarIcon sx={{fontSize: '40px', color: "#0097B2"}} onClick={newEvent}/>
+             <EditCalendarIcon sx={{fontSize: '40px', color: "#0097B2", cursor: 'pointer'}} onClick={newEvent}/>
             </Stack>
             <Stack direction="column" justifyContent="space-around" alignItems="center" spacing={1} sx={{ paddingBottom: "10px" }}>
                     {currentEvents.map((event) =>
