@@ -24,12 +24,18 @@ export default function MyEvents() {
     console.log('All Events:', events);
     const dispatch = useDispatch();
     const history = useHistory();
-
+    
     const pending = events.filter(event => event.rsvp_status === null);
     console.log('Pending events:', pending);
     const going = events.filter(event => event.rsvp_status === 1);
     const notGoing = events.filter(event => event.rsvp_status === 2);
-
+    
+    useEffect(() => {
+        dispatch({ type: 'FETCH_EVENT' });
+        dispatch({ type: 'FETCH_MY_EVENT' });
+        window.scrollTo(0, 0);
+      }, []);
+      
     const eventsPerPage = 3;
     const [currentIndex, setCurrentIndex] = useState(0);
     const currentEvents = going.slice(currentIndex, currentIndex + eventsPerPage);
@@ -127,10 +133,6 @@ export default function MyEvents() {
             }
 
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_EVENT' });
-        dispatch({ type: 'FETCH_MY_EVENT' });
-      }, []);
 
       const newEvent = () => {
         console.log('Clicked');

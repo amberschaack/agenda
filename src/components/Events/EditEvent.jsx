@@ -1,12 +1,17 @@
 import { Button, Stack, Typography } from "@mui/joy";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { useEffect } from 'react';
 
 export default function EditEvent() {
     const dispatch = useDispatch();
     const history = useHistory();
     const eventDetails = useSelector(store => store.eventDetails);
     console.log('Event Details Store:', eventDetails);
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     const handleSubmit = (event) => {
         event.preventDefault();

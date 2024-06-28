@@ -24,6 +24,7 @@ export default function MyGroups() {
     useEffect(() => {
         dispatch({ type: 'FETCH_GROUP' });
         dispatch({ type: 'FETCH_MY_GROUP' });
+        window.scrollTo(0, 0);
     }, []);
 
     const newGroup = () => {

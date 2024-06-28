@@ -12,7 +12,8 @@ import Button from '@mui/joy/Button';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Divider from '@mui/joy/Divider';
-import { Height } from "@mui/icons-material";
+import dayjs from "dayjs";
+
 
 export default function EventDetails() {
     const params = useParams();
@@ -32,7 +33,8 @@ export default function EventDetails() {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_EVENT_DETAILS', payload: params.id });
-        dispatch({ type: 'FETCH_RSVP', payload: params.id })
+        dispatch({ type: 'FETCH_RSVP', payload: params.id });
+        window.scrollTo(0, 0);
     }, []);
 
     const backToUpcoming = () => {
@@ -87,7 +89,7 @@ export default function EventDetails() {
                     <Divider inset="none" />
                     <Typography level='body-md' fontWeight='bold'>Event Time:</Typography>
                     <Typography level="body-lg">
-                        {eventDetails.event_time}
+                        {moment(eventDetails.event_time, "hh:mm:ss").format('h:mm A')}
                     </Typography>
                     <Divider inset="none" />
                     <Typography level='body-md' fontWeight='bold'>Event Location:</Typography>
@@ -111,7 +113,7 @@ export default function EventDetails() {
                     </AvatarGroup>
                 </CardContent>
                 <CardActions>
-                    <Stack direction='row' justifyContent='space-between' spacing={2}>
+                    <Stack direction="row" justifyContent="space-evenly" alignItems="center" spacing={9}>
                     {going ? 
                         <Button variant="solid" sx={{ bgcolor: "#0097B2" }} onClick={() => removeRSVP('2')}>
                             Remove RSVP
@@ -121,7 +123,6 @@ export default function EventDetails() {
                             RSVP
                         </Button>
                     }
-
                     <Button variant="solid" sx={{ bgcolor: "#0097B2" }} onClick={backToUpcoming}>
                         Back to Upcoming
                     </Button>

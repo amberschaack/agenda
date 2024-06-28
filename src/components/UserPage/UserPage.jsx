@@ -36,7 +36,13 @@ function UserPage() {
   const groupsPerPage = 2;
   const [groupIndex, setGroupIndex] = useState(0);
   const currentGroups = nonGroup.slice(groupIndex, groupIndex + groupsPerPage);
-
+  
+  useEffect(() => {
+    dispatch({ type: 'FETCH_EVENT' });
+    dispatch({ type: 'FETCH_ALL_GROUPS' });
+    window.scrollTo(0, 0);
+  }, []);
+  
   const nextEvents = () => {
     if (currentIndex + eventsPerPage >= going.length) {
       setCurrentIndex(0);
@@ -81,10 +87,6 @@ function UserPage() {
     }
   }
 
-  useEffect(() => {
-    dispatch({ type: 'FETCH_EVENT' });
-    dispatch({ type: 'FETCH_ALL_GROUPS' });
-  }, []);
 
   const newEvent = () => {
     console.log('Clicked');

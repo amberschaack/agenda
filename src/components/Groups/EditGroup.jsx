@@ -8,7 +8,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import GroupMembers from './GroupMembers';
 import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
-
+import { useEffect } from 'react';
 
 export default function EditGroup() {
   const dispatch = useDispatch();
@@ -17,6 +17,10 @@ export default function EditGroup() {
   const memberships = useSelector((store) => store.membership);
   console.log('Members', memberships);
   console.log('Event Details Store:', groupDetails);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();

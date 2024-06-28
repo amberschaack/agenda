@@ -23,6 +23,7 @@ export default function GroupDetails() {
     useEffect(() => {
         dispatch({ type: 'FETCH_GROUP_DETAILS', payload: params.id });
         dispatch({ type: 'FETCH_MEMBERSHIPS', payload: params.id });
+        window.scrollTo(0, 0);
     }, []);
 
     function clampAvatars(memberships, options = { max: 7 }) {

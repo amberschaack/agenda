@@ -38,7 +38,7 @@ export default function EventItem({ event }) {
                 </CardOverflow>
                 <CardContent>
                 <CardOverflow>
-                    <Typography fontWeight="md"  noWrap sx={{width: '175px'}} className='event-name'>
+                    <Typography fontWeight="md"  noWrap sx={{width: '200px'}} className='event-name'>
                         {event.event_name}
                     </Typography>
                 </CardOverflow>
