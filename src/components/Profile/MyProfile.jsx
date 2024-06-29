@@ -46,7 +46,7 @@ export default function MyProfile() {
                     variant="outlined"
                     badgeContent={
                     <CameraAltIcon
-                        sx={{ width: '35px', height: '35px', color: '#343A40' }}
+                        sx={{ width: '35px', height: '35px', color: '#343A40', cursor: 'pointer' }}
                     />
                     }
                     badgeInset="14%"
