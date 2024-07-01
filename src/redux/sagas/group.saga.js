@@ -46,6 +46,8 @@ function* addGroup(action) {
         yield axios.post('/api/group', action.payload);
         yield put({ type: 'FETCH_GROUP' });
         yield put({ type: 'FETCH_USER' });
+        yield put({ type: 'FETCH_ALL_GROUPS' });
+        yield put ({ type: 'FETCH_MY_GROUP' });
     } catch (error) {
         console.log(`Error getting groups`, error);
     }
