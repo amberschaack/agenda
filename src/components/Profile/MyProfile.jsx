@@ -21,8 +21,8 @@ export default function MyProfile() {
         !!window.cloudinary && window.cloudinary.createUploadWidget(
            {
               sources: ['local', 'url', 'camera'],
-              cloudName: 'dz2bil44j',
-              uploadPreset: 'hl5wdxak'
+              cloudName: process.env.REACT_APP_CLOUDINARY_NAME,
+              uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET
            },
            (error, result) => {
               if (!error && result && result.event === "success") {
