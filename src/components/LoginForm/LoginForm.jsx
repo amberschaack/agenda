@@ -29,7 +29,7 @@ function LoginForm() {
     <div className='container'>
     <form onSubmit={login} className='formPanel'>
     <Stack direction='column' alignItems='center' spacing={1}>
-      <img src='public/AgendaBanner.png' />
+      <img src='AgendaBanner.png' />
     </Stack>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
