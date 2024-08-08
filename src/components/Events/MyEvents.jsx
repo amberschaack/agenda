@@ -132,8 +132,6 @@ export default function MyEvents() {
               }
             }
 
-
-
       const newEvent = () => {
         console.log('Clicked');
         history.push('/add-event');
