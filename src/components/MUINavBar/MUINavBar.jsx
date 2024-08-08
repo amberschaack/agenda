@@ -114,8 +114,11 @@ function MUINavBar() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"  onClick={() => {navToSetting(setting)}}>{setting}</Typography>
+                  <MenuItem key={setting} onClick={() => {
+                    handleCloseUserMenu();
+                    navToSetting(setting);
+                  }}>
+                    <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -146,8 +149,11 @@ function MUINavBar() {
               onClose={handleCloseUserMenu}
             >
               {loggedOut.map((log) => (
-                <MenuItem key={log} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center"  onClick={() => {navToLog(log)}}>{log}</Typography>
+                <MenuItem key={log} onClick={() => {
+                  handleCloseUserMenu();
+                  navToLog(log);
+                }}>
+                  <Typography textAlign="center">{log}</Typography>
                 </MenuItem>
               ))}
             </Menu>
