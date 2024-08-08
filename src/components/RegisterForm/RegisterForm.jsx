@@ -28,7 +28,7 @@ function RegisterForm() {
     <div className='container'>
     <form className="formPanel" onSubmit={registerUser}>
     <Stack direction='column' alignItems='center'>
-      <img src='public/AgendaBanner.png' />
+      <img src='AgendaBanner.png' />
     </Stack>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">

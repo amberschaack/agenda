@@ -27,7 +27,7 @@ function LandingPage() {
       sx={{ width: '90vw' }}
     >
       <Stack direction="column" spacing={1.5}>
-        <img src="/public/AgendaBanner.png" />
+        <img src="AgendaBanner.png" />
         <Typography level="h3">
           Simplify your social life with Agenda—because planning events should be as fun as attending them!
         </Typography>
