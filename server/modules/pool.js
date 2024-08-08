@@ -1,10 +1,3 @@
-/* the only line you likely need to change is
-
- database: 'prime_app',
-
- change `prime_app` to the name of your database, and you should be all set!
-*/
-
 const pg = require('pg');
 let pool;
 
@@ -31,5 +24,8 @@ else {
         database: 'agenda',
     });
 }
+
+pool.on('connect', () => console.log(`Connected to database`));
+pool.on('error', (err) => console.error(`Error connecting to database:`, err));
 
 module.exports = pool;
