@@ -5,7 +5,7 @@ import Box from '@mui/joy/Box';
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
-import { Stack, Typography } from '@mui/joy';
+import { Button, Stack, Typography } from '@mui/joy';
 
 function LandingPage() {
   const history = useHistory();
@@ -14,16 +14,17 @@ function LandingPage() {
     history.push('/login');
   };
 
+  const register = (event) => {
+    history.push('/registration');
+  };
+
   return (
     <div className="container">
-    {/* <center> */}
     <Box
-      // height={200}
-      my={4}
       display="flex"
       alignItems="center"
-      p={0}
-      sx={{ width: '91vw' }}
+      p={1}
+      sx={{ width: '90vw' }}
     >
       <Stack direction="column" spacing={1.5}>
         <img src="/public/AgendaBanner.png" />
@@ -51,9 +52,20 @@ function LandingPage() {
           <b>Create Your Own Events:</b> Got something special in mind? Create your own events within your groups, 
           and let everyone know the time and place.
         </Typography>
+        <br/>
+        <Stack direction='column' spacing={1} alignItems='center'>
+          <Typography level="h4">Get started today!</Typography>
+          <Button 
+            sx={{width: '40vw', bgcolor: "#0097B2", fontSize: '20px'}}
+            onClick={register}>Register</Button>
+          <br/>
+          <Typography level="body-lg">Already a member?</Typography>
+          <Button 
+            sx={{width: '40vw', bgcolor: "#0097B2", fontSize: '20px'}}
+            onClick={onLogin}>Login</Button>
+        </Stack>
       </Stack>
     </Box>
-    {/* </center> */}
     </div>
   );
 }
